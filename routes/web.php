@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PasienController;
+use App\Models\Pasien;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,9 @@ Route::get('/', function () {
 });
 Route::middleware(['auth', 'CekLevel:1'])->group(function () {
     Route::get('Admin', [AdminController::class, 'index'])->name('Admin');
+    Route::get('Admin/DataPasien', [PasienController::class, 'index'])->name('DataPasien');
+    Route::post('DataPasien', [PasienController::class, 'SimpanPasien'])->name('DataPasien.simpan');
+    Route::put('DataPasien', [PasienController::class, 'UpdatePasien'])->name('DataPasien.update');
 });
 Route::get('Login', [LoginController::class, 'index'])->name('Login');
 Route::get('Logout', [LoginController::class, 'Logout'])->name('Logout');
