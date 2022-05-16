@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pasien extends Model
+class Obat extends Model
 {
     use HasFactory;
-    protected $table = 't_pasien';
-    protected $primaryKey = 'id_pasien';
-    protected $fillable = ['nama_pasien', 'gender', 'email', 'no_telp', 'alamat'];
-    public function getpasien()
+    protected $table = 't_obat';
+    protected $fillable = ['nama_obat', 'harga', 'keterangan'];
+    public function getPasien()
     {
         # code...
         return $this->hasOne(RekamMedis::class, 'id_pasien');

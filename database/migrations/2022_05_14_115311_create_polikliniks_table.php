@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('t_user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->tinyInteger('level');
+        Schema::create('t_poliklinik', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_poliklinik');
+            $table->string('gedung');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_user');
+        Schema::dropIfExists('polikliniks');
     }
 };
