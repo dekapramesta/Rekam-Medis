@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DataLaporanController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PoliklinikController;
 use App\Http\Controllers\RekamMedisController;
+use App\Http\Controllers\SuperAdminController;
 use App\Models\Pasien;
+use App\Models\Poliklinik;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,23 +24,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'index'])->name('Login');
 Route::middleware(['auth', 'CekLevel:1'])->group(function () {
     Route::get('Admin', [AdminController::class, 'index'])->name('Admin');
-    Route::get('Admin/DataPasien', [PasienController::class, 'index'])->name('DataPasien');
-    Route::post('DataPasien', [PasienController::class, 'SimpanPasien'])->name('DataPasien.simpan');
-    Route::put('DataPasien', [PasienController::class, 'UpdatePasien'])->name('DataPasien.update');
-    Route::put('Dokter', [DokterController::class, 'UpdateDokter'])->name('Dokter.updatedokter');
+
     Route::prefix('Admin')->group(function () {
+        Route::get('DataPasien', [PasienController::class, 'index'])->name('DataPasien');
+        Route::post('DataPasien', [PasienController::class, 'SimpanPasien'])->name('DataPasien.simpan');
+        Route::put('DataPasien', [PasienController::class, 'UpdatePasien'])->name('DataPasien.update');
+        Route::delete('DataPasien/{id}/Delete', [PasienController::class, 'Delete'])->name('DataPasien.delete');
+        Route::put('Dokter', [DokterController::class, 'UpdateDokter'])->name('Dokter.updatedokter');
         Route::resource('DataDokter', DokterController::class);
         Route::resource('DataObat', ObatController::class);
+        Route::delete('DataDokter/{id}/DataDokter', [DokterController::class, 'deletecok'])->name('Dokter.deletecok');
         Route::put('Obat', [ObatController::class, 'updateObat'])->name('Obat.updateObat');
         Route::get('rekam-medis', [RekamMedisController::class, 'index'])->name('rekammedis');
+        Route::get('laporan', [DataLaporanController::class, 'index'])->name('laporan');
+        Route::get('poliklinik', [PoliklinikController::class, 'index'])->name('poliklinik');
+        Route::put('poliklinik', [PoliklinikController::class, 'Update'])->name('poliklinik.update');
+        Route::post('laporan', [DataLaporanController::class, 'LaporanRekamMedis'])->name('laporan.cetak');
+        Route::post('poliklinik', [PoliklinikController::class, 'Simpan'])->name('poliklinik.simpan');
+        Route::delete('poliklinik/{id}/delete', [PoliklinikController::class, 'Delete'])->name('poliklinik.delete');
         Route::post('rekam-medis', [RekamMedisController::class, 'Tambah'])->name('rekammedis.tambah');
         Route::put('rekam-medis', [RekamMedisController::class, 'update'])->name('rekammedis.update');
+        Route::delete('rekam-medis/{id}/delete', [RekamMedisController::class, 'Delete'])->name('rekammedis.delete');
     });
+});
+Route::middleware(['auth', 'CekLevel:2'])->group(function () {
+    Route::get('Superadmin', [SuperAdminController::class, 'index'])->name('superadmin');
+    Route::put('Superadmin', [SuperAdminController::class, 'UpdateUser'])->name('superadmin.update');
+    Route::put('Superadmin/GantiPass', [SuperAdminController::class, 'GantiPassword'])->name('superadmin.ganti');
+    Route::post('Superadmin', [SuperAdminController::class, 'Daftar'])->name('superadmin.daftar');
 });
 Route::get('Login', [LoginController::class, 'index'])->name('Login');
 Route::get('Logout', [LoginController::class, 'Logout'])->name('Logout');

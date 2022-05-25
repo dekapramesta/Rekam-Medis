@@ -9,7 +9,7 @@ class RekamMedis extends Model
 {
     use HasFactory;
     protected $table = 't_rekammedis';
-    protected $fillable = ['id_pasien', 'id_dokter', 'keluhan', 'diagnosa'];
+    protected $fillable = ['id_pasien', 'id_dokter', 'keluhan', 'diagnosa', 'tgl_periksa'];
     public function getDokterId()
     {
         # code...

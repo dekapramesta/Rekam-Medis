@@ -28,6 +28,14 @@ class DokterController extends Controller
     {
         //
     }
+    public function deletecok($id)
+    {
+        # code...
+        // echo $id;
+        $dokter = Dokter::find($id);
+        $dokter->delete();
+        return redirect()->intended('Admin/DataDokter');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -87,7 +95,6 @@ class DokterController extends Controller
             'alamat' => 'required',
             'no_telp' => 'required'
         ]);
-        dd($request);
         // $dokter = Dokter::find($request->id_dokter);
         $dokter->nama_dokter = $request->nama_dokter;
         $dokter->spesialis = $request->spesialis;

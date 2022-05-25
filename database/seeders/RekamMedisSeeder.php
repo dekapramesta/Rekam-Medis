@@ -21,6 +21,7 @@ class RekamMedisSeeder extends Seeder
             'id_pasien' => 1,
             'keluhan'             => 'Pusinh',
             'diagnosa'       => 'migrain',
+            'tgl_periksa' => '2022-05-17'
 
         ]);
         $user->save();

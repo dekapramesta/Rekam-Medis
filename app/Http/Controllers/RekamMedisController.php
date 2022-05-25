@@ -6,14 +6,16 @@ use App\Models\Dokter;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 use App\Models\RekamMedis;
-
+use Carbon\Carbon;
 
 class RekamMedisController extends Controller
 {
     public function index(Request $request)
     {
         # code...
+        // $tgl = Carbon::now()->format('Y-m-d');
         $rm = RekamMedis::all();
+        // dd($tgl);
         $dokter = Dokter::all();
         $pasien = Pasien::all();
         return view('admin.rekam_medis', compact('rm', 'dokter', 'pasien'));
@@ -24,11 +26,14 @@ class RekamMedisController extends Controller
         # code...
         $request->validate([
             'id_dokter' => 'required',
-            'id_    pasien' => 'required',
+            'id_pasien' => 'required',
             'keluhan' => 'required',
             'diagnosa' => 'required',
         ]);
+
+
         $rm = new RekamMedis($request->all());
+        $rm->tgl_periksa = Carbon::now()->format('Y-m-d');
         $rm->save();
         return redirect()->intended('Admin/rekam-medis');
     }
@@ -42,6 +47,13 @@ class RekamMedisController extends Controller
         $rm->diagnosa = $request->diagnosa;
         $rm->save();
         // dd($rm);
+        return redirect()->intended('Admin/rekam-medis');
+    }
+    public function Delete($id)
+    {
+        # code...
+        $rm = RekamMedis::find($id);
+        $rm->delete();
         return redirect()->intended('Admin/rekam-medis');
     }
     //

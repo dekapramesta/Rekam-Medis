@@ -39,4 +39,11 @@ class PasienController extends Controller
         $pasien->save();
         return redirect()->intended('Admin/DataPasien');
     }
+    public function Delete($id)
+    {
+        # code...
+        $pasien = Pasien::find($id);
+        $pasien->delete();
+        return redirect()->intended('Admin/DataPasien');
+    }
 }

@@ -28,6 +28,7 @@ return new class extends Migration
                 ->constrained('t_dokter')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->date('tgl_periksa');
             $table->timestamps();
         });
         // Schema::table('t_rekammedis', function (Blueprint $table) {

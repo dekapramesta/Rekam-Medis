@@ -113,8 +113,11 @@ class ObatController extends Controller
      * @param  \App\Models\Obat  $obat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Obat $obat)
+    public function destroy($id)
     {
         //
+        $obat = Obat::find($id);
+        $obat->delete();
+        return redirect()->intended('Admin/DataObat');
     }
 }

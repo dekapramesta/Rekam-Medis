@@ -5,6 +5,11 @@
       <div class="row">
             <div class="col-12">
               <div class="card">
+                 @if ($errors->any())
+                        @foreach ($errors->all() as $err)
+                            <p class="alert alert-danger">{{$err}}</p>
+                        @endforeach
+                        @endif
                 <div class="card-header d-flex">
                   <h4 class="card-title">Rekam Medis</h4>
                   <button onclick="TambahRM()" class="btn btn-primary ms-auto">Tambah Data</button>
@@ -35,9 +40,14 @@
                         <td>{{$rkm->getPasienId->nama_pasien}}</td>
                         <td>{{$rkm->diagnosa}}</td>
                         <td>{{$rkm->keluhan}}</td>
-                        <td>{{$rkm->created_at}}</td>
+                        <td>{{$rkm->tgl_periksa}}</td>
                         <td>
-                          <Button class="btn btn-primary" onclick="UpdateRM('{{$rkm}}')">Upd</Button>
+                          <Button onclick="UpdateRM('{{$rkm}}')"id="bElim" type="button" class="btn btn-sm btn-soft-success btn-circle" href=""><i class="dripicons-pencil" aria-hidden="true"></i></Button>
+                           <form action="{{route('rekammedis.delete',$rkm->id)}}" method="POST"  style="display: inline-flex">
+                                                              @csrf
+                                                              @method('DELETE')
+                                                        <button id="bElim" type="submit" class="btn btn-sm btn-soft-danger btn-circle"><i class="dripicons-trash" aria-hidden="true"></i></button>
+                                                            </form>
                         </td>
                       </tr>
                         @endforeach

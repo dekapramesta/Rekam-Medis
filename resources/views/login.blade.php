@@ -28,6 +28,13 @@
             <div class="row vh-100 d-flex justify-content-center">
                 <div class="col-12 align-self-center">
                     <div class="row">
+                           @if ($errors->any())
+                                    @foreach ($errors->all() as $err)
+                                        <p class="alert alert-danger">{{$err}}</p>
+                                    @endforeach
+                                    @endif
+                      
+                         
                         
                         <div class="col-lg-5 mx-auto">
                             <div class="card">
@@ -41,19 +48,15 @@
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
-                                    @foreach ($errors->all() as $err)
-    <p class="alert alert-danger">{{$err}}</p>
-@endforeach
-   @if (session('success'))
-    <p class="alert alert-success">{{session('success')}}</p>
-@endif
+                                
+                                @if (session('password'))
+                                    <p class="alert alert-success">{{session('password')}}</p>
+                                @endif
                                     <ul class="nav-border nav nav-pills" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#LogIn_Tab" role="tab">Log In</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#Register_Tab" role="tab">Register</a>
-                                        </li>
+                                     
                                     </ul>
                                      <!-- Tab panes -->
                                     <div class="tab-content">
@@ -82,19 +85,10 @@
                                                     </div><!--end col--> 
                                                 </div> <!--end form-group-->                           
                                             </form><!--end form-->
-                                            <div class="m-3 text-center text-muted">
-                                                <p class="mb-0">Don't have an account ?  <a href="auth-register.html" class="text-primary ms-2">Free Resister</a></p>
-                                            </div>
-                                            <div class="account-social">
-                                                <h6 class="mb-3">Or Login With</h6>
-                                            </div>
-                                            <div class="btn-group w-100">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Facebook</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Twitter</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Google</button>
-                                            </div>
+                                            
+                                            
                                         </div>
-                                        <div class="tab-pane px-3 pt-3" id="Register_Tab" role="tabpanel">
+                                        {{-- <div class="tab-pane px-3 pt-3" id="Register_Tab" role="tabpanel">
                                             <form class="form-horizontal auth-form" method="post" action="{{route('Login.daftar')}}">
                                                 @csrf
                                                 <div class="form-group mb-2">
@@ -129,7 +123,7 @@
                                                 </div> <!--end form-group-->                           
                                             </form><!--end form-->
                                             <p class="my-3 text-muted">Already have an account ?<a href="auth-login.html" class="text-primary ms-2">Log in</a></p>                                                    
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div><!--end card-body-->
                                 <div class="card-body bg-light-alt text-center">

@@ -15,6 +15,11 @@
     <link href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet" />
 
     <!-- App css -->
+    <link href="{{ asset('assets') }}plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets') }}plugins/huebee/huebee.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets') }}plugins/timepicker/bootstrap-material-datetimepicker.css" rel="stylesheet">
+        <link href="{{ asset('assets') }}plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
@@ -52,39 +57,29 @@
       <!--end logo-->
       <div class="menu-content h-100" data-simplebar>
         <ul class="metismenu left-sidenav-menu">
-          @if (Auth::user()->level == 1)
-               <li class="menu-label mt-0">Main</li>
+          <li class="menu-label mt-0">Main</li>
            <li class="mb-2">
-            <a href="{{route('Admin')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
+            <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
           </li>
             <li class="mb-2">
-            <a href="{{route('DataPasien')}}"><i data-feather="layers" class="align-self-center menu-icon "></i><span>Data Pasien</span></a>
+            <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon "></i><span>Data Pasien</span></a>
           </li>
            <li class="mb-2">
-            <a href="{{route('DataObat.index')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Obat</span></a>
+            <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Obat</span></a>
           </li>
            <li class="mb-2">
-            <a href="{{route('DataDokter.index')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Dokter</span></a>
+            <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Dokter</span></a>
           </li>
            <li class="mb-2">
-            <a href="{{route('rekammedis')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Rekam Medis</span></a>
+            <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Rekam Medis</span></a>
           </li>
           
            <li class="mb-2">
-            <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Poliknlik</span></a>
+            <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Poliknlik</span></a>
           </li>
            <li class="mb-2">
-            <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Laporan</span></a>
+            <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Laporan</span></a>
           </li>
-         
-              
-          @elseif(Auth::user()->level == 2)
-                   <li class="mb-2">
-            <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data User</span></a>
-          </li>
-          
-          @endif
-         
         </ul>
       </div>
     </div>

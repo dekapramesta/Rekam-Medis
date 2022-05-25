@@ -43,10 +43,16 @@ class LoginController extends Controller
             ]
         );
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return redirect()->intended('Admin');
+            if (Auth::user()->level == 1) {
+                $request->session()->regenerate();
+                return redirect()->intended('Admin');
+            } elseif (Auth::user()->level == 2) {
+                $request->session()->regenerate();
+                return redirect()->intended('Superadmin');
+            }
+        } else {
+            return redirect()->route('Login')->withErrors(['Username atau Password salah']);
         }
-        return back()->withErrors('password', 'Username atau Password salah');
     }
     public function Logout(Request $request)
     {
