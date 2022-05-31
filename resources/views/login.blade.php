@@ -39,12 +39,11 @@
                         <div class="col-lg-5 mx-auto">
                             <div class="card">
                                 <div class="card-body p-0 auth-header-box">
-                                    <div class="text-center p-3">
-                                        <a href="index.html" class="logo logo-admin">
-                                            <img src="assets/images/logo-sm-dark.png" height="50" alt="logo" class="auth-logo">
-                                        </a>
-                                        <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Let's Get Started Dastone</h4>   
-                                        <p class="text-muted  mb-0">Sign in to continue to Dastone.</p>  
+                                    <div class="d-flex text-center p-3">
+                                        <img src="assets/images/telko.jpg" height="80" alt="logo" class="auth-logo">
+
+                                        <h4 class="ms-3 mt-4 mb-1 fw-semibold text-white font-18">Sistem Informasi Rekam Medis</h4>   
+                                        {{-- <p class="text-muted  mb-0">Sign in to continue to Dastone.</p>   --}}
                                     </div>
                                 </div>
                                 <div class="card-body p-0">

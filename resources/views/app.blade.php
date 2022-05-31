@@ -38,15 +38,20 @@
     <!-- Left Sidenav -->
     <div class="left-sidenav">
       <!-- LOGO -->
-      <div class="brand">
-        <a href="index.html" class="logo">
-          <span>
-            <img src="{{asset('assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm" />
-          </span>
-          <span>
+      <div class="d-flex brand">
+       
+         
+            <img class="mt-3 ms-4" src="{{asset('assets/images/telko.jpg')}}" style="width: 70px; height: 50px ;"  alt="logo-small" class="logo-sm" />
+            
+
+          <h4 class="ms-3" style="margin-top: 13%">SIRM</h4>
+          {{-- <span>
+            <h4>SIRM</h4>
+          </span> --}}
+          {{-- <span>
             <img src="{{asset('assets/images/logo.png')}}" alt="logo-large" class="logo-lg logo-light" />
             <img src="{{asset('assets/images/logo-dark.png')}}" alt="logo-large" class="logo-lg logo-dark" />
-          </span>
+          </span> --}}
         </a>
       </div>
       <!--end logo-->

@@ -34,6 +34,7 @@ class SuperAdminController extends Controller
             ]
         );
         $user->save();
+        dd($user->id);
         return redirect()->intended('Superadmin');
     }
     public function UpdateUser(Request $request)
@@ -44,6 +45,7 @@ class SuperAdminController extends Controller
         $user->level = $request->level;
         $user->status_user = $request->status_user;
         $user->save();
+
         // dd($rm);
         return redirect()->intended('Superadmin');
     }
