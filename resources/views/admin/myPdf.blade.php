@@ -7,20 +7,20 @@
 <body>
     {{-- <h1>{{ $title }}</h1>
     <p>{{ $date }}</p> --}}
-    <h1 style="margin-left: 20%">Laporan Rekam Medis</h1>
+    <h1 style="margin-left: 25%; margin-bottom: 20px">Laporan Rekam Medis</h1>
   
     <table class="table table-bordered">
-        <tr>
+        <tr style="background: #F08080">
             <th>#</th>
             <th>Nama Pasien</th>
             <th>No RM</th>
             <th>Poli</th>
             <th>Nama Dokter</th>
-            <th>Keluhan</th>
+            {{-- <th>Keluhan</th> --}}
             <th>Diagnosa</th>
-            {{-- <th>Tindakan</th>
-            <th>Resep Obat</th> --}}
-            <th>Tanggal Periksa</th>
+            <th>Tindakan</th>
+            <th>Obat</th>
+            {{-- <th>Tanggal Periksa</th> --}}
 
         </tr>
         @php
@@ -34,10 +34,10 @@
             <td>{{$dt->getPoli->nama_poliklinik}}</td>
             <td>{{ $dt->getDokterId->nama_dokter }}</td>
              <td>{{$dt->diagnosa}}</td>
-            <td>{{$dt->keluhan}}</td>
-            {{-- <td>{{$dt->tindakan}}</td>
-            <td>{{$dt->resep_obat}}</td> --}}
-            <td>{{ $dt->tgl_periksa }}</td>
+            {{-- <td>{{$dt->keluhan}}</td> --}}
+            <td>{{$dt->tindakan}}</td>
+            <td>{{$dt->resep_obat}}</td>
+            {{-- <td>{{ $dt->tgl_periksa }}</td> --}}
         </tr>
         @endforeach
     </table>
