@@ -75,8 +75,8 @@
                     <div class="card-body">
                       <div class="row d-flex justify-content-center">
                         <div class="col">
-                          <p class="text-dark mb-0 fw-semibold">Total Obat</p>
-                          <h3 class="m-0">{{$obat}}</h3>
+                          <p class="text-dark mb-0 fw-semibold">Total Poliklinik</p>
+                          <h3 class="m-0">{{$poliklinik}}</h3>
                         </div>
                         <div class="col-auto align-self-center">
                           <div class="report-main-icon bg-light-alt">
