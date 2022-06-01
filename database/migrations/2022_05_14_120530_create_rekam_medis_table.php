@@ -24,8 +24,15 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('keluhan', 30);
             $table->string('diagnosa', 30);
+            $table->string('tindakan', 30);
+            $table->text('resep_obat');
+
             $table->foreignId('id_dokter')
                 ->constrained('t_dokter')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('id_poli')
+                ->constrained('t_poliklinik')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->date('tgl_periksa');

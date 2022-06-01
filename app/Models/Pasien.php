@@ -10,7 +10,10 @@ class Pasien extends Model
     use HasFactory;
     protected $table = 't_pasien';
     protected $primaryKey = 'id_pasien';
-    protected $fillable = ['nama_pasien', 'gender', 'email', 'no_telp', 'alamat'];
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $fillable = ['nama_pasien', 'gender', 'nik', 'no_telp', 'alamat', 'no_rm', 'ttl', 'status', 'agama', 'pekerjaan', 'pendidikan'];
     public function getpasien()
     {
         # code...

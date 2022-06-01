@@ -15,11 +15,20 @@ return new class extends Migration
     {
         Schema::create('t_pasien', function (Blueprint $table) {
             $table->id('id_pasien');
+            $table->string('no_rm', 50);
             $table->string('nama_pasien', 50);
             $table->enum('gender', ['Pria', 'Wanita']);
-            $table->string('email', 50);
+            $table->string('nik', 50);
             $table->string('no_telp', 20);
             $table->string('alamat', 50);
+            $table->string('ttl', 50);
+            $table->string('pekerjaan', 50);
+            $table->string('pendidikan', 50);
+            $table->string('status', 50);
+            $table->string('agama', 50);
+
+
+
             $table->timestamps();
         });
     }

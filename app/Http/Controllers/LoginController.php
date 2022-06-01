@@ -43,12 +43,16 @@ class LoginController extends Controller
             ]
         );
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            if (Auth::user()->level == 1) {
-                $request->session()->regenerate();
-                return redirect()->intended('Admin');
-            } elseif (Auth::user()->level == 2) {
-                $request->session()->regenerate();
-                return redirect()->intended('Superadmin');
+            if (Auth::user()->status_user == 1) {
+                if (Auth::user()->level == 1) {
+                    $request->session()->regenerate();
+                    return redirect()->intended('Admin');
+                } elseif (Auth::user()->level == 2) {
+                    $request->session()->regenerate();
+                    return redirect()->intended('Superadmin');
+                }
+            } else {
+                return redirect()->route('Login')->withErrors(['Akun Non-Aktif']);
             }
         } else {
             return redirect()->route('Login')->withErrors(['Username atau Password salah']);

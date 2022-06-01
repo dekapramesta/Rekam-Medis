@@ -9,7 +9,7 @@ class RekamMedis extends Model
 {
     use HasFactory;
     protected $table = 't_rekammedis';
-    protected $fillable = ['id_pasien', 'id_dokter', 'keluhan', 'diagnosa', 'tgl_periksa'];
+    protected $fillable = ['id_pasien', 'id_dokter', 'id_poli', 'keluhan', 'diagnosa', 'tindakan', 'resep_obat', 'tgl_periksa'];
     public function getDokterId()
     {
         # code...
@@ -19,5 +19,10 @@ class RekamMedis extends Model
     {
         # code...
         return $this->belongsTo(Pasien::class, 'id_pasien');
+    }
+    public function getPoli()
+    {
+        # code...
+        return $this->belongsTo(Poliklinik::class, 'id_poli');
     }
 }

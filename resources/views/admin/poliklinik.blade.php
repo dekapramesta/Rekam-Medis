@@ -78,7 +78,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Poliklinik</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('poliklinik.simpan')}}" method="post">
@@ -103,7 +103,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail dan Update</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('poliklinik.update')}}" method="post">
@@ -111,7 +111,7 @@
         @method('PUT')
       <div class="modal-body">
         <div class="form-group" >
-        <input id="update_id" type="text" name="id" class="form-control " required="">
+        <input hidden id="update_id" type="text" name="id" class="form-control " required="">
         <input id="update_nama" placeholder="Keluhan" value="{{old('nama_poliklinik')}}" type="text" name="nama_poliklinik" class="form-control " required="">
         </div>
          <div class="form-group" >

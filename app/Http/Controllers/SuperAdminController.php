@@ -65,4 +65,12 @@ class SuperAdminController extends Controller
         // dd($rm);
         return redirect()->intended('Superadmin');
     }
+    public function ChangeStatus(Request $request)
+    {
+        # code...
+        $user = User::find($request->id);
+        $user->status_user = $request->status;
+        $user->save();
+        return redirect()->intended('Superadmin');
+    }
 }

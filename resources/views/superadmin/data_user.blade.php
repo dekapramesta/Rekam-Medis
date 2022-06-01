@@ -11,7 +11,7 @@
                         @endforeach
                         @endif
                 <div class="card-header d-flex">
-                  <h4 class="card-title">Datav User</h4>
+                  <h4 class="card-title">Data User</h4>
                   <button onclick="TambahUser()" class="btn btn-primary ms-auto">Tambah Data</button>
                 </div>
                 <!--end card-header-->
@@ -53,6 +53,7 @@
                            <td>
                           <Button onclick="UpdateUs('{{$us}}')"id="bElim" type="button" class="btn btn-sm btn-soft-success btn-circle" href=""><i class="dripicons-pencil" aria-hidden="true"></i></Button>
                             <Button onclick="ChangePass('{{$us->id}}')"id="bElim" type="button" class="btn btn-sm btn-soft-primary btn-circle" href=""><i class="dripicons-lock-open" aria-hidden="true"></i></Button>
+                            {{-- <Button onclick="GantiStatus('{{$us}}')"id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" href=""><i class="dripicons-trash" aria-hidden="true"></i></Button> --}}
 
                         </td>
                            </tr>
@@ -89,13 +90,53 @@
         $('#ganti_pass').appendTo("body").modal('show');
 
     }
+     function GantiStatus(id){
+       let data = JSON.parse(id)
+        $('#status_id').val(data.id)
+                $('#status').val(data.status_user)
+
+        $('#ganti_status').appendTo("body").modal('show');
+
+    }
  
 </script>
+<div class="modal fade" id="ganti_status" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ganti Status</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{route('superadmin.ubah_status')}}" method="post">
+        @csrf
+        @method('PUT')
+      <div class="modal-body">
+         <div class="form-group" >
+        <input hidden id="status_id"  value="{{old('id')}}" type="text" name="id" class="form-control " required="">
+      <div class="form-group">
+        <select id="status" name="status" id="" class="select form-control" required="">
+           <option value="0">Nonaktif</option>
+          <option value="1">Aktif</option>
+       
+        </select>
+      </div>
+
+         
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="ganti_pass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ganti Password</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('superadmin.ganti')}}" method="post">
@@ -103,11 +144,11 @@
         @method('PUT')
       <div class="modal-body">
          <div class="form-group" >
-        <input id="pass_id"  value="{{old('id')}}" type="text" name="id" class="form-control " required="">
+        <input hidden id="pass_id"  value="{{old('id')}}" type="text" name="id" class="form-control " required="">
         <input  placeholder="Password" value="{{old('password')}}" type="password" name="password" class="form-control " required="">
         </div>
          <div class="form-group" >
-        <input placeholder="Confirmasi Password" value="{{old('conf_pass')}}" type="passowrd" name="conf_pass" class="form-control " required="">
+        <input placeholder="Confirmasi Password" value="{{old('conf_pass')}}" type="password" name="conf_pass" class="form-control " required="">
         </div>
 
          
@@ -125,7 +166,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Dan Update</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('superadmin.update')}}" method="post">
@@ -133,8 +174,8 @@
         @method('PUT')
       <div class="modal-body">
          <div class="form-group" >
-        <input id="update_id" placeholder="Keluhan" value="{{old('id')}}" type="text" name="id" class="form-control " required="">
-        <input id="update_username" placeholder="Keluhan" value="{{old('username')}}" type="text" name="username" class="form-control " required="">
+        <input hidden id="update_id"  value="{{old('id')}}" type="text" name="id" class="form-control " required="">
+        <input id="update_username"  value="{{old('username')}}" type="text" name="username" class="form-control " required="">
         </div>
          <div class="form-group" >
         <select class="select form-control mb-3 " id="update_level" name="level">
@@ -161,7 +202,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('superadmin.daftar')}}" method="post">

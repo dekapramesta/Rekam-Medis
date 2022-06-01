@@ -19,8 +19,11 @@ class RekamMedisSeeder extends Seeder
         $user = RekamMedis::create([
             'id_dokter' => 1,
             'id_pasien' => 1,
-            'keluhan'             => 'Pusinh',
+            'id_poli' => 1,
+            'keluhan'             => 'Panas',
             'diagnosa'       => 'migrain',
+            'tindakan' => 'diperiksa',
+            'resep_obat' => 'Paracetamol',
             'tgl_periksa' => '2022-05-17'
 
         ]);

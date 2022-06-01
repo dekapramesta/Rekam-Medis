@@ -13,10 +13,6 @@
                     <div class="card-body">
                         <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div class="row">
-                               
-                                <div class="col-sm-12 col-md-6">
-                                    <div id="datatable-buttons_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable-buttons"></label>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -26,23 +22,40 @@
                                             <tr>
                                                 <th >#</th>
                                                 <th>Nama pasien</th>
+                                                <th>No RM</th>
                                                 <th >Jenis Kelamin</th>
-                                                <th >Email</th>
+                                                <th >NIK</th>
                                                 <th>No Telp</th>
                                                 <th>Alamat</th>
+                                                <th>Jenis Pasien</th>
+                                                
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                         @php
+                                             foreach ($rm as $rkm){
+                                               $rekam[]= $rkm->id_pasien;
+                                             }
+                                         @endphp
                                             <?php $no = 1; ?>
                                            @foreach ($Pasien as $ps)
                                                 <tr class="odd">
                                                     <td tabindex="0" class="">{{$no++}}</td>
                                                     <td class="sorting_1">{{$ps->nama_pasien}}</td>
+                                                    <td>{{$ps->no_rm}}</td>
                                                     <td>{{$ps->gender}}</td>
-                                                    <td>{{$ps->email}}</td>
+                                                    <td>{{$ps->nik}}</td>
                                                     <td>{{$ps->no_telp}}</td>
                                                     <td>{{$ps->alamat}}</td>
+                                                    <td>@php
+                                                     
+                                                        if(in_array($ps->id_pasien,$rekam)){
+                                                          echo "Lama";
+                                                        }else{
+                                                          echo "Baru";
+                                                        }
+                                                    @endphp</td>
                                                     <td>
                                                         <!-- <button onclick="Coba()" type="button" class="btn btn-sm btn-soft-success btn-circle me-2"><i class="dripicons-pencil"></i></button> -->
                                                         <button onclick="UpdatePasien('{{$ps}}')" id="bElim" type="button" class="btn btn-sm btn-soft-success btn-circle" href=""><i class="dripicons-pencil" aria-hidden="true"></i></button>
@@ -73,12 +86,17 @@
     function UpdatePasien(data){
         let datapas = JSON.parse(data)
         $('#id_update').val(datapas.id_pasien)
+         $('#rm_update').val(datapas.no_rm)
         $('#gender_update').val(datapas.gender)
         $('#namapas_update').val(datapas.nama_pasien)
-        $('#email_update').val(datapas.email)
+        $('#nik_update').val(datapas.nik)
         $('#no_update').val(datapas.no_telp)
         $('#alamat_update').val(datapas.alamat)
-
+ $('#ttl_update').val(datapas.ttl)
+  $('#pekerjaan_update').val(datapas.pekerjaan)
+   $('#pendidikan_update').val(datapas.pendidikan)
+    $('#status_update').val(datapas.status)
+     $('#agama_update').val(datapas.agama)
 
 
         // let select = document.querySelector('#gender_update');
@@ -94,7 +112,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Pasien</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('DataPasien.simpan')}}" method="post">
@@ -105,19 +123,34 @@
         </div>
          <div class="form-group">
             <select class="form-select" aria-label="Default select example" name="gender">
-                <option selected hidden disabled>Open this select menu</option>
+                <option selected hidden disabled>Pilih Gender</option>
                 <option value="Pria">Pria</option>
                 <option value="Wanita">Wanita</option>
             </select>
         </div>
          <div class="form-group" >
-        <input  placeholder="Email" value="{{old('email')}}" type="text" name="email" class="form-control " required="">
+        <input  placeholder="NIK" value="{{old('nik')}}" type="text" name="nik" class="form-control " required="">
         </div>
          <div class="form-group" >
         <input  placeholder="No Telp" value="{{old('no_telp')}}" type="text" name="no_telp" class="form-control " required="">
         </div>
          <div class="form-group" >
         <input  placeholder="Alamat" value="{{old('alamat')}}" type="text" name="alamat" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input  placeholder="TTL" value="{{old('ttl')}}" type="text" name="ttl" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input  placeholder="Pekerjaan" value="{{old('pekerjaan')}}" type="text" name="pekerjaan" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input  placeholder="Pendidikan" value="{{old('pendidikan')}}" type="text" name="pendidikan" class="form-control " required="">
+        </div>
+        <div class="form-group" >
+        <input  placeholder="Status" value="{{old('status')}}" type="text" name="status" class="form-control " required="">
+        </div>
+        <div class="form-group" >
+        <input  placeholder="agama" value="{{old('agama')}}" type="text" name="agama" class="form-control " required="">
         </div>
       </div>
       <div class="modal-footer">
@@ -132,7 +165,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Dan Edit</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('DataPasien.update')}}" method="post">
@@ -140,26 +173,44 @@
         @method('PUT')
       <div class="modal-body">
         <div class="form-group" >
-        <input id="id_update" value="" type="text" name="id_update" class="form-control " required="">
+        <input hidden id="id_update" value="" type="text" name="id_update" class="form-control " required="">
+        </div>
+          <div class="form-group" >
+        <input id="rm_update" value="" type="text" name="no_rm" class="form-control " required="">
         </div>
         <div class="form-group" >
         <input id="namapas_update" placeholder="Nama Pasien" value="{{old('nama_pasien')}}" type="text" name="nama_pasien" class="form-control " required="">
         </div>
          <div class="form-group">
             <select class="form-select" id="gender_update" aria-label="Default select example" name="gender">
-                <option selected hidden disabled>Open this select menu</option>
+                <option selected hidden disabled>Pilih Gender</option>
                 <option value="Pria">Pria</option>
                 <option value="Wanita">Wanita</option>
             </select>
         </div>
          <div class="form-group" >
-        <input id="email_update" placeholder="Email" value="{{old('email')}}" type="text" name="email" class="form-control " required="">
+        <input id="nik_update" placeholder="nik" value="{{old('nik')}}" type="text" name="nik" class="form-control " required="">
         </div>
          <div class="form-group" >
         <input id="no_update" placeholder="No Telp" value="{{old('no_telp')}}" type="text" name="no_telp" class="form-control " required="">
         </div>
          <div class="form-group" >
         <input id="alamat_update" placeholder="Alamat" value="{{old('alamat')}}" type="text" name="alamat" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input id="ttl_update" placeholder="TTL" value="{{old('ttl')}}" type="text" name="ttl" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input id="pekerjaan_update" placeholder="Pekerjaan" value="{{old('pekerjaan')}}" type="text" name="pekerjaan" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input id="pendidikan_update" placeholder="Pendidikan" value="{{old('pendidikan')}}" type="text" name="pendidikan" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input id="status_update" placeholder="Status" value="{{old('status')}}" type="text" name="status" class="form-control " required="">
+        </div>
+         <div class="form-group" >
+        <input id="agama_update" placeholder="Agama" value="{{old('agama')}}" type="text" name="agama" class="form-control " required="">
         </div>
       </div>
       <div class="modal-footer">

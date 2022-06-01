@@ -11,18 +11,33 @@
   
     <table class="table table-bordered">
         <tr>
-            <th>Id</th>
+            <th>#</th>
             <th>Nama Pasien</th>
+            <th>No RM</th>
+            <th>Poli</th>
             <th>Nama Dokter</th>
+            <th>Keluhan</th>
+            <th>Diagnosa</th>
+            {{-- <th>Tindakan</th>
+            <th>Resep Obat</th> --}}
             <th>Tanggal Periksa</th>
 
         </tr>
+        @php
+            $no =1;
+        @endphp
         @foreach($dataku as $dt)
         <tr>
-            <td>{{ $dt->id }}</td>
+            <td>{{ $no++ }}</td>
             <td>{{ $dt->getPasienId->nama_pasien }}</td>
+            <td>{{ $dt->getPasienId->no_rm }}</td>
+            <td>{{$dt->getPoli->nama_poliklinik}}</td>
             <td>{{ $dt->getDokterId->nama_dokter }}</td>
-            <td>{{ $dt->created_at }}</td>
+             <td>{{$dt->diagnosa}}</td>
+            <td>{{$dt->keluhan}}</td>
+            {{-- <td>{{$dt->tindakan}}</td>
+            <td>{{$dt->resep_obat}}</td> --}}
+            <td>{{ $dt->tgl_periksa }}</td>
         </tr>
         @endforeach
     </table>

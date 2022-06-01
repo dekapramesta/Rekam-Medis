@@ -19,12 +19,18 @@ class PasienSeeder extends Seeder
     {
         //
         $user = Pasien::create([
+            'no_rm' => 'RM002192',
             'nama_pasien'          => 'mamad',
             'gender'          => 'Pria',
             'no_telp'             => '0867237236',
             'alamat'       => 'asasasondj',
-            'email' => 'mamad@gmail.com',
-            'alamat' => 'nglanduk'
+            'nik' => '1212918',
+            'alamat' => 'nglanduk',
+            'ttl' => 'madiun 12-november-2000',
+            'pekerjaan' => 'mahasiswa',
+            'pendidikan' => 'sma',
+            'status' => 'Menikah',
+            'agama' => 'islam'
 
         ]);
         $user->save();

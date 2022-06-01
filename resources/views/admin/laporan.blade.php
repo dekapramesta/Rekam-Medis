@@ -6,8 +6,7 @@
                 <div class="col-12 mt-3">
                      <div class="card">
                     <div class="card-header d-flex">
-                        <h4 class="card-title">Data Pasien</h4>
-                        <button onclick="TambahPasien()" class="btn btn-primary ms-auto">Tambah Data</button>
+                        <h4 class="card-title">Cetak Rekam Medis</h4>
                     </div>
                     <!--end card-header-->
                     <form action="{{route('laporan.cetak')}}" method="post" enctype="multipart/form-data">

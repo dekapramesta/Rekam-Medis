@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex">
-                        <h4 class="card-title">Data Pasien</h4>
+                        <h4 class="card-title">Data Dokter</h4>
                         <button onclick="TambahDokter()" class="btn btn-primary ms-auto">Tambah Data</button>
                     </div>
                     <!--end card-header-->
@@ -98,7 +98,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Dokter</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('DataDokter.store')}}" method="post">
@@ -129,7 +129,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Dan Update</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('Dokter.updatedokter')}}"  method="post">
@@ -137,7 +137,7 @@
         @method('PUT')
       <div class="modal-body">
          <div class="form-group" >
-        <input id="id_dokter" placeholder="Nama Dokter" value="{{old('nama_dokter')}}" type="text" name="id_dokter" class="form-control " required="">
+        <input id="id_dokter" hidden placeholder="Nama Dokter" value="{{old('nama_dokter')}}" type="text" name="id_dokter" class="form-control " required="">
         </div>
         <div class="form-group" >
         <input id="nama_dokter" placeholder="Nama Dokter" value="{{old('nama_dokter')}}" type="text" name="nama_dokter" class="form-control " required="">

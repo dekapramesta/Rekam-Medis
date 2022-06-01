@@ -39,6 +39,8 @@ Route::middleware(['auth', 'CekLevel:1'])->group(function () {
         Route::delete('DataDokter/{id}/DataDokter', [DokterController::class, 'deletecok'])->name('Dokter.deletecok');
         Route::put('Obat', [ObatController::class, 'updateObat'])->name('Obat.updateObat');
         Route::get('rekam-medis', [RekamMedisController::class, 'index'])->name('rekammedis');
+        Route::get('rekam-medis/tambah-rekam', [RekamMedisController::class, 'TambahRekamMedis'])->name('tambahrekammedis');
+
         Route::get('laporan', [DataLaporanController::class, 'index'])->name('laporan');
         Route::get('poliklinik', [PoliklinikController::class, 'index'])->name('poliklinik');
         Route::put('poliklinik', [PoliklinikController::class, 'Update'])->name('poliklinik.update');
@@ -54,6 +56,8 @@ Route::middleware(['auth', 'CekLevel:2'])->group(function () {
     Route::get('Superadmin', [SuperAdminController::class, 'index'])->name('superadmin');
     Route::put('Superadmin', [SuperAdminController::class, 'UpdateUser'])->name('superadmin.update');
     Route::put('Superadmin/GantiPass', [SuperAdminController::class, 'GantiPassword'])->name('superadmin.ganti');
+    Route::put('Superadmin/change-status', [SuperAdminController::class, 'ChangeStatus'])->name('superadmin.ubah_status');
+
     Route::post('Superadmin', [SuperAdminController::class, 'Daftar'])->name('superadmin.daftar');
 });
 Route::get('Login', [LoginController::class, 'index'])->name('Login');
