@@ -108,7 +108,7 @@
         <input  placeholder="Nama Dokter" value="{{old('nama_dokter')}}" type="text" name="nama_dokter" class="form-control " required="">
         </div>
          <div class="form-group" >
-        <input  placeholder="Email" value="{{old('spesialis')}}" type="text" name="spesialis" class="form-control " required="">
+        <input  placeholder="Spesilis" value="{{old('spesialis')}}" type="text" name="spesialis" class="form-control " required="">
         </div>
          <div class="form-group" >
         <input  placeholder="No Telp" value="{{old('no_telp')}}" type="text" name="no_telp" class="form-control " required="">

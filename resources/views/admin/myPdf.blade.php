@@ -12,6 +12,7 @@
     <table class="table table-bordered">
         <tr style="background: #F08080">
             <th>#</th>
+             <th>Tanggal Periksa</th>
             <th>Nama Pasien</th>
             <th>No RM</th>
             <th>Poli</th>
@@ -20,7 +21,7 @@
             <th>Diagnosa</th>
             <th>Tindakan</th>
             <th>Obat</th>
-            {{-- <th>Tanggal Periksa</th> --}}
+           
 
         </tr>
         @php
@@ -29,6 +30,8 @@
         @foreach($dataku as $dt)
         <tr>
             <td>{{ $no++ }}</td>
+                        <td>{{ $dt->tgl_periksa }}</td>
+
             <td>{{ $dt->getPasienId->nama_pasien }}</td>
             <td>{{ $dt->getPasienId->no_rm }}</td>
             <td>{{$dt->getPoli->nama_poliklinik}}</td>
@@ -37,7 +40,6 @@
             {{-- <td>{{$dt->keluhan}}</td> --}}
             <td>{{$dt->tindakan}}</td>
             <td>{{$dt->resep_obat}}</td>
-            {{-- <td>{{ $dt->tgl_periksa }}</td> --}}
         </tr>
         @endforeach
     </table>
