@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Bulan Mei 2022 pada 09.34
+-- Waktu pembuatan: 02 Jun 2022 pada 09.46
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.2
 
@@ -86,8 +86,8 @@ CREATE TABLE `t_dokter` (
 --
 
 INSERT INTO `t_dokter` (`id`, `nama_dokter`, `spesialis`, `no_telp`, `alamat`, `created_at`, `updated_at`) VALUES
-(4, 'deka', 'jantung expert', '0892162716', 'dagangan', '2022-05-22 15:00:18', '2022-05-22 15:00:18'),
-(5, 'kevin', 'kevin@gmail.com', '08961767', 'dagangan', '2022-05-23 01:00:40', '2022-05-23 01:00:40');
+(1, 'Stephan de Vries', 'jantung', '0989898', 'dagangan', '2022-06-01 15:07:10', '2022-06-01 15:07:10'),
+(2, 'John doe', 'kepala', '08921626', 'madiun', '2022-06-01 15:07:10', '2022-06-01 15:07:10');
 
 -- --------------------------------------------------------
 
@@ -104,6 +104,13 @@ CREATE TABLE `t_obat` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `t_obat`
+--
+
+INSERT INTO `t_obat` (`id`, `nama_obat`, `harga`, `keterangan`, `created_at`, `updated_at`) VALUES
+(1, 'Paramex', '7000', 'Obat Pusing Kepala', '2022-06-01 15:07:10', '2022-06-01 15:07:10');
+
 -- --------------------------------------------------------
 
 --
@@ -112,11 +119,17 @@ CREATE TABLE `t_obat` (
 
 CREATE TABLE `t_pasien` (
   `id_pasien` bigint(20) UNSIGNED NOT NULL,
+  `no_rm` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_pasien` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` enum('Pria','Wanita') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nik` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `no_telp` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ttl` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pekerjaan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pendidikan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `agama` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -125,9 +138,9 @@ CREATE TABLE `t_pasien` (
 -- Dumping data untuk tabel `t_pasien`
 --
 
-INSERT INTO `t_pasien` (`id_pasien`, `nama_pasien`, `gender`, `email`, `no_telp`, `alamat`, `created_at`, `updated_at`) VALUES
-(2, 'virgoun', 'Pria', 'itachi@gmail.com', '7247384632', 'Jogodayuh', '2022-05-22 14:55:02', '2022-05-22 14:55:02'),
-(3, 'svelte', 'Wanita', 'svelte@gmail.com', '834294789234', 'Magetan', '2022-05-22 19:31:43', '2022-05-22 19:31:31');
+INSERT INTO `t_pasien` (`id_pasien`, `no_rm`, `nama_pasien`, `gender`, `nik`, `no_telp`, `alamat`, `ttl`, `pekerjaan`, `pendidikan`, `status`, `agama`, `created_at`, `updated_at`) VALUES
+(1, 'RM002192', 'mamad', 'Pria', '1212918', '0867237236', 'nglanduk', 'madiun 12-november-2000', 'mahasiswa', 'sma', 'Menikah', 'islam', '2022-06-01 15:07:10', '2022-06-01 15:07:10'),
+(3, 'RM975437', 'itachi', 'Pria', '1212918', '0892162716', 'nglanduk', 'Sarangan 12-November-2000', 'Pengacara', 'S2', 'Menikah', 'Budha', '2022-06-01 21:26:00', '2022-06-01 21:26:00');
 
 -- --------------------------------------------------------
 
@@ -148,7 +161,7 @@ CREATE TABLE `t_poliklinik` (
 --
 
 INSERT INTO `t_poliklinik` (`id`, `nama_poliklinik`, `gedung`, `created_at`, `updated_at`) VALUES
-(2, 'poli cacar', 'lt 5', '2022-05-21 16:32:03', '2022-05-21 16:32:03');
+(1, 'Poli anak', 'Lt 3', '2022-06-01 15:07:10', '2022-06-01 15:07:10');
 
 -- --------------------------------------------------------
 
@@ -161,7 +174,10 @@ CREATE TABLE `t_rekammedis` (
   `id_pasien` bigint(20) UNSIGNED NOT NULL,
   `keluhan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `diagnosa` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tindakan` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resep_obat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_dokter` bigint(20) UNSIGNED NOT NULL,
+  `id_poli` bigint(20) UNSIGNED NOT NULL,
   `tgl_periksa` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -171,9 +187,9 @@ CREATE TABLE `t_rekammedis` (
 -- Dumping data untuk tabel `t_rekammedis`
 --
 
-INSERT INTO `t_rekammedis` (`id`, `id_pasien`, `keluhan`, `diagnosa`, `id_dokter`, `tgl_periksa`, `created_at`, `updated_at`) VALUES
-(3, 2, 'Kaki Kemengs', 'Cantengen', 4, '2022-05-22', '2022-05-22 15:12:00', '2022-05-22 15:28:10'),
-(5, 3, 'Pusinh', 'migrain', 5, '2022-05-23', '2022-05-23 01:01:00', '2022-05-23 01:01:00');
+INSERT INTO `t_rekammedis` (`id`, `id_pasien`, `keluhan`, `diagnosa`, `tindakan`, `resep_obat`, `id_dokter`, `id_poli`, `tgl_periksa`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Panas', 'migrain', 'diperiksa', 'Paracetamol', 1, 1, '2022-05-17', '2022-06-01 15:07:10', '2022-06-01 15:07:10'),
+(2, 1, 'Kaki Kemeng', 'Cantengen', 'penanganan', 'Salep', 2, 1, '2022-06-01', '2022-06-01 15:58:33', '2022-06-01 16:19:23');
 
 -- --------------------------------------------------------
 
@@ -196,10 +212,8 @@ CREATE TABLE `t_user` (
 --
 
 INSERT INTO `t_user` (`id`, `username`, `password`, `level`, `created_at`, `updated_at`, `status_user`) VALUES
-(1, 'dekapra', '$2y$10$KjqEGqzV31lFIoH4z3bMo.8.7rAl5o5vS891wsDetGQAgJpJVnw6G', 1, '2022-05-16 19:28:06', '2022-05-22 22:14:59', 1),
-(2, 'superadmin', '$2y$10$mA5jp5ZessVvoHphIR8r0uIzPewK6rLRECBqq4z3LBIqP/zHIFHWG', 2, '2022-05-22 19:46:37', '2022-05-22 19:46:37', 1),
-(3, 'akaza', '$2y$10$6SOG.M3hyxrsNckPoAMHaOpdbLhhlKc.HsWqlC0Y4xEDwZRs2FcSu', 1, '2022-05-22 22:23:41', '2022-05-22 22:41:31', 1),
-(4, 'dkprabos', '$2y$10$6HxNxwBTUpgf6u.B7cHCBuGEntD3HTyn0wDja9sCd7rmLN/EUUYHu', 1, '2022-05-28 07:43:49', '2022-05-28 07:43:49', 1);
+(1, 'akaza', '$2y$10$Kd9tmBEXsKyqLAvqHhxucOqWnY0tpuYzXAipZwc/2o1cDnSzR1Gqu', 1, '2022-06-01 15:07:10', '2022-06-01 21:21:15', 1),
+(2, 'admin', '$2y$10$zR.TZknMuReUXn4Vwl2Kt.AFWy8jMYpxH7WJ1kd3yo5cw.nGLgoxC', 2, '2022-06-01 20:52:52', '2022-06-01 21:20:06', 1);
 
 --
 -- Indexes for dumped tables
@@ -249,7 +263,8 @@ ALTER TABLE `t_poliklinik`
 ALTER TABLE `t_rekammedis`
   ADD PRIMARY KEY (`id`),
   ADD KEY `t_rekammedis_id_pasien_foreign` (`id_pasien`),
-  ADD KEY `t_rekammedis_id_dokter_foreign` (`id_dokter`);
+  ADD KEY `t_rekammedis_id_dokter_foreign` (`id_dokter`),
+  ADD KEY `t_rekammedis_id_poli_foreign` (`id_poli`);
 
 --
 -- Indeks untuk tabel `t_user`
@@ -278,13 +293,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `t_dokter`
 --
 ALTER TABLE `t_dokter`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_obat`
 --
 ALTER TABLE `t_obat`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_pasien`
@@ -296,19 +311,19 @@ ALTER TABLE `t_pasien`
 -- AUTO_INCREMENT untuk tabel `t_poliklinik`
 --
 ALTER TABLE `t_poliklinik`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_rekammedis`
 --
 ALTER TABLE `t_rekammedis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -319,7 +334,8 @@ ALTER TABLE `t_user`
 --
 ALTER TABLE `t_rekammedis`
   ADD CONSTRAINT `t_rekammedis_id_dokter_foreign` FOREIGN KEY (`id_dokter`) REFERENCES `t_dokter` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_rekammedis_id_pasien_foreign` FOREIGN KEY (`id_pasien`) REFERENCES `t_pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_rekammedis_id_pasien_foreign` FOREIGN KEY (`id_pasien`) REFERENCES `t_pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_rekammedis_id_poli_foreign` FOREIGN KEY (`id_poli`) REFERENCES `t_poliklinik` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
