@@ -74,7 +74,7 @@
           </li>
           
            <li class="mb-2">
-            <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Poliknlik</span></a>
+            <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Poli</span></a>
           </li>
            <li class="mb-2">
             <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Laporan</span></a>
@@ -83,7 +83,11 @@
               
           @elseif(Auth::user()->level == 2)
                    <li class="mb-2 mt-3">
-            <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data User</span></a>
+            <a href="{{route('superadmin')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data User</span></a>
+          </li>
+            @elseif(Auth::user()->level == 3)
+                   <li class="mb-2 mt-3">
+            <a href="{{route('dokteruser')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Rekam Medis</span></a>
           </li>
           
           @endif
@@ -105,11 +109,17 @@
 
             <li class="dropdown">
               <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <span class="me-3 nav-user-name hidden-sm">{{Auth::user()->username}}</span>
+                <span class="me-2 nav-user-name hidden-sm">{{Auth::user()->username}}</span>
+                                <img src="@if (Auth::user()->foto== null)
+                                    https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png
+                                @else
+                                    {{asset('/storage/fotoprofil/'.Auth::user()->foto)}}
+                                @endif" alt="profile-user" class="rounded-circle thumb-xs" />
+
               </a>
               <div class="dropdown-menu dropdown-menu-end">
-                {{-- <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
-                <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a> --}}
+                <a class="dropdown-item" href="{{route('profile')}}"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
+                {{-- <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a> --}}
                 <div class="dropdown-divider mb-0"></div>
                 <a class="dropdown-item" href="{{route('Logout')}}"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
               </div>
@@ -139,7 +149,6 @@
           <script>
             document.write(new Date().getFullYear());
           </script>
-          Dastone <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
         </footer>
         <!--end footer-->
       </div>

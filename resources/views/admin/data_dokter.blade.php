@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header d-flex">
                         <h4 class="card-title">Data Dokter</h4>
-                        <button onclick="TambahDokter()" class="btn btn-primary ms-auto">Tambah Data</button>
+                        {{-- <button onclick="TambahDokter()" class="btn btn-primary ms-auto">Tambah Data</button> --}}
                     </div>
                     <!--end card-header-->
                     <div class="card-body">
@@ -30,8 +30,9 @@
                   <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%">
                                   <thead>
                                             <tr>
-                                                <th >#</th>
+                                                <th >No</th>
                                                 <th>Nama pasien</th>
+                                                <th >PoliKlinik</th>
                                                 <th >Spesialis</th>
                                                 <th >No Telp</th>
                                                 <th >Alamat</th>
@@ -44,6 +45,7 @@
                                                 <tr class="odd">
                                                     <td tabindex="0" class="">{{$no++}}</td>
                                                     <td class="sorting_1">{{$dk->nama_dokter}}</td>
+                                                    <td>{{$dk->getPoli->nama_poliklinik}}</td>
                                                     <td>{{$dk->spesialis}}</td>
                                                     <td>{{$dk->no_telp}}</td>
                                                     <td>{{$dk->alamat}}</td>
@@ -79,6 +81,8 @@
         console.log(datadok);
         $('#id_dokter').val(datadok.id)
         $('#nama_dokter').val(datadok.nama_dokter)
+                $('#id_poli').val(datadok.id_poli)
+
         $('#spesialis').val(datadok.spesialis)
         $('#no_telp').val(datadok.no_telp)
         $('#alamat').val(datadok.alamat)
@@ -110,6 +114,12 @@
          <div class="form-group" >
         <input  placeholder="Spesilis" value="{{old('spesialis')}}" type="text" name="spesialis" class="form-control " required="">
         </div>
+          <select class="select form-control mb-3 " name="id_poli">
+          <option disabled selected>Pilih Poli</option>
+            @foreach ($poli as $pk)
+                <option value="{{$pk->id}}">{{$pk->nama_poliklinik}}</option>
+            @endforeach
+        </select>
          <div class="form-group" >
         <input  placeholder="No Telp" value="{{old('no_telp')}}" type="text" name="no_telp" class="form-control " required="">
         </div>
@@ -142,6 +152,12 @@
         <div class="form-group" >
         <input id="nama_dokter" placeholder="Nama Dokter" value="{{old('nama_dokter')}}" type="text" name="nama_dokter" class="form-control " required="">
         </div>
+         <select id="id_poli" class="select form-control mb-3 " name="id_poli">
+          <option disabled selected>Pilih Poli</option>
+            @foreach ($poli as $pk)
+                <option value="{{$pk->id}}">{{$pk->nama_poliklinik}}</option>
+            @endforeach
+        </select>
          <div class="form-group" >
         <input id="spesialis" placeholder="spesialis" value="{{old('spesialis')}}" type="text" name="spesialis" class="form-control " required="">
         </div>

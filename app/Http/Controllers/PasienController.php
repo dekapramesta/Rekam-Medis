@@ -11,9 +11,10 @@ class PasienController extends Controller
     //
     public function index()
     {
-        $data['Pasien'] = Pasien::all();
-        $data['rm'] = RekamMedis::all();
-        return view('admin/data_pasien', $data);
+        $Pasien = Pasien::all();
+        $rm = RekamMedis::all();
+        // dd($data['rm']);
+        return view('admin/data_pasien', compact('Pasien', 'rm'));
     }
     public function SimpanPasien(Request $request)
     {
@@ -30,8 +31,26 @@ class PasienController extends Controller
             'agama' => 'required'
         ]);
         $pasien = new Pasien($request->all());
-        $no_rm = 'RM' . rand(000000, 999999);
-        $pasien->no_rm = $no_rm;
+        $rekam = Pasien::all();
+        if ($rekam == null) {
+            $id = 'RM000001';
+        } else {
+            $id_code = null;
+            foreach ($rekam as $rkm) {
+                $code =  substr($rkm->no_rm, 2);
+                if ($id_code == null) {
+
+                    $id_code = $code;
+                } else {
+                    if ($code > $id_code) {
+                        $id_code = $code;
+                    }
+                }
+            }
+            $id = 'RM' . str_pad($id_code + 1, 6, '0', STR_PAD_LEFT);
+        }
+        // $no_rm = 'RM' . rand(000000, 999999);
+        $pasien->no_rm = $id;
         $pasien->save();
         return redirect()->intended('Admin/DataPasien');
     }

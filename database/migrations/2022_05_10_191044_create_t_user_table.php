@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('t_user', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('foto')->nullable();
             $table->tinyInteger('level');
             $table->timestamps();
         });

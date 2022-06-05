@@ -11,7 +11,7 @@
                         @endforeach
                         @endif
                 <div class="card-header d-flex">
-                  <h4 class="card-title">Data User</h4>
+                  <h4 class="card-title">Data Pegawai</h4>
                   <button onclick="TambahUser()" class="btn btn-primary ms-auto">Tambah Data</button>
                 </div>
                 <!--end card-header-->
@@ -19,7 +19,7 @@
                   <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%">
                     <thead>
                       <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Username</th>
                         <th>Level</th>
                         <th>Status User</th>
@@ -39,9 +39,12 @@
                                {{ "Admin" }}
                               
                                    
-                               @else
+                               @elseif($us->level == 2)
                                    
                             {{ "Superadmin" }}
+                             @elseif($us->level == 3)
+                            {{ "Dokter" }}
+
 
                                
                            @endif</td>
@@ -181,6 +184,8 @@
         <select class="select form-control mb-3 " id="update_level" name="level">
           <option value="1">Admin</option>
           <option value="2">Super Admin</option>
+          <option value="3">Dokter</option>
+
         </select>
         </div>
          <div class="form-group" >
@@ -218,13 +223,17 @@
         <input  placeholder="Confirmasi Password" value="{{old('username')}}" type="password" name="conf_pass" class="form-control " required="">
         </div>
          <div class="form-group" >
-        <select class="select form-control mb-3 " name="level">
+        <select id="level_add" onchange="LevelChange(event)" class="select form-control mb-3 " name="level">
             <option disabled selected hidden>Pilih Akses</option>
           <option value="1">Admin</option>
           <option value="2">Super Admin</option>
+          <option value="3">Dokter</option>
+
         </select>
         </div>
+        <div  id="dokter_add"></div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -233,4 +242,19 @@
     </div>
   </div>
 </div>
+@php
+    $polijs = json_encode($poli);
+@endphp
+<script>
+function LevelChange(event){
+    let poli = {!! json_encode($poli->toArray()) !!};
+  console.log(poli);
+  console.log(event.target.value)
+  if(event.target.value == 3){
+     $('#dokter_add').append('<div class="form-group"><input id="nama_dokter" placeholder="Nama Dokter" type="text" name="nama_dokter" class="form-control " required=""></div><select id="id_poli" class="select form-control mb-3 " name="id_poli"><option disabled selected>Pilih Poli</option> @foreach($poli as $pl) <option value={{$pl->id}}>{{$pl->nama_poliklinik}}</option> @endforeach </select><div class="form-group" ><input id="spesialis" placeholder="spesialis"  type="text" name="spesialis" class="form-control " required=""></div><div class="form-group" ><input id="no_telp" placeholder="No Telp" type="text" name="no_telp" class="form-control " required=""></div><div class="form-group" ><input id="alamat" placeholder="Alamat" type="text" name="alamat" class="form-control " required=""></div>')
+  }else{
+         $('#dokter_add').html('')
+  }
+}
+</script>
 @endsection

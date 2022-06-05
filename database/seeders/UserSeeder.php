@@ -16,12 +16,34 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'username'          => 'dekapra',
-            'password'          => Hash::make('deka'),
-            'level'             => 1,
-            'status_user'       => 1
-        ]);
-        $user->save();
+        $data = [
+            [
+                'username'          => 'dekapra',
+                'password'          => Hash::make('deka'),
+                'level'             => 1,
+                'status_user'       => 1
+            ], [
+                'username'          => 'admin',
+                'password'          => Hash::make('admin'),
+                'level'             => 2,
+                'status_user'       => 1
+            ],
+            [
+                'username'          => 'akaza',
+                'password'          => Hash::make('akaza'),
+                'level'             => 3,
+                'status_user'       => 1
+            ],
+            [
+                'username'          => 'patrick',
+                'password'          => Hash::make('patrick'),
+                'level'             => 3,
+                'status_user'       => 1
+            ],
+        ];
+        foreach ($data as $dt) {
+            $user = User::create($dt);
+            $user->save();
+        }
     }
 }

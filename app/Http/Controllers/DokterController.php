@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\Poliklinik;
 use Illuminate\Http\Request;
 
 class DokterController extends Controller
@@ -15,8 +16,10 @@ class DokterController extends Controller
     public function index()
     {
         //
+        $poli = Poliklinik::all();
         $dokter = Dokter::all();
-        return view('admin.data_dokter', compact('dokter'));
+        // dd($dokter->getPoli->get());
+        return view('admin.data_dokter', compact('dokter', 'poli'));
     }
 
     /**
@@ -48,6 +51,7 @@ class DokterController extends Controller
         //
         $request->validate([
             'nama_dokter' => 'required',
+            'id_poli' => 'required',
             'alamat' => 'required',
             'spesialis' => 'required',
             'no_telp' => 'required',
@@ -91,12 +95,14 @@ class DokterController extends Controller
 
         $request->validate([
             'nama_dokter' => 'required',
+            'id_poli' => 'required',
             'spesialis' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required'
         ]);
         // $dokter = Dokter::find($request->id_dokter);
         $dokter->nama_dokter = $request->nama_dokter;
+        $dokter->id_poli = $request->id_poli;
         $dokter->spesialis = $request->spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->no_telp = $request->no_telp;
@@ -107,12 +113,15 @@ class DokterController extends Controller
     {
         $request->validate([
             'nama_dokter' => 'required',
+            'id_poli' => 'required',
             'spesialis' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required'
         ]);
         $dokter = Dokter::find($request->id_dokter);
         $dokter->nama_dokter = $request->nama_dokter;
+        $dokter->id_poli = $request->id_poli;
+
         $dokter->spesialis = $request->spesialis;
         $dokter->alamat = $request->alamat;
         $dokter->no_telp = $request->no_telp;

@@ -3,10 +3,12 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataLaporanController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\DokterUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PoliklinikController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\SuperAdminController;
 use App\Models\Pasien;
@@ -29,6 +31,11 @@ Route::middleware(['auth', 'CekLevel:1'])->group(function () {
     Route::get('Admin', [AdminController::class, 'index'])->name('Admin');
 
     Route::prefix('Admin')->group(function () {
+        // Route::get('Profile', [ProfileController::class, 'index'])->name('profile');
+        // Route::post('Profile', [ProfileController::class, 'UbahFoto'])->name('profile.foto');
+        // // Route::post('Profile', [ProfileController::class, 'UbahFoto'])->name('profile.foto');
+        // Route::post('Profile/ubah-data', [ProfileController::class, 'updateProfile'])->name('profile.ubahdata');
+        // Route::post('Profile/ubah-password', [ProfileController::class, 'GantiPassword'])->name('profile.ubahpass');
         Route::get('DataPasien', [PasienController::class, 'index'])->name('DataPasien');
         Route::post('DataPasien', [PasienController::class, 'SimpanPasien'])->name('DataPasien.simpan');
         Route::put('DataPasien', [PasienController::class, 'UpdatePasien'])->name('DataPasien.update');
@@ -53,12 +60,31 @@ Route::middleware(['auth', 'CekLevel:1'])->group(function () {
     });
 });
 Route::middleware(['auth', 'CekLevel:2'])->group(function () {
+    // Route::get('Profile', [ProfileController::class, 'index'])->name('profile');
+    // Route::post('Profile', [ProfileController::class, 'UbahFoto'])->name('profile.foto');
+    // // Route::post('Profile', [ProfileController::class, 'UbahFoto'])->name('profile.foto');
+    // Route::post('Profile/ubah-data', [ProfileController::class, 'updateProfile'])->name('profile.ubahdata');
+    // Route::post('Profile/ubah-password', [ProfileController::class, 'GantiPassword'])->name('profile.ubahpass');
     Route::get('Superadmin', [SuperAdminController::class, 'index'])->name('superadmin');
     Route::put('Superadmin', [SuperAdminController::class, 'UpdateUser'])->name('superadmin.update');
     Route::put('Superadmin/GantiPass', [SuperAdminController::class, 'GantiPassword'])->name('superadmin.ganti');
     Route::put('Superadmin/change-status', [SuperAdminController::class, 'ChangeStatus'])->name('superadmin.ubah_status');
 
     Route::post('Superadmin', [SuperAdminController::class, 'Daftar'])->name('superadmin.daftar');
+});
+Route::middleware(['auth', 'CekLevel:3'])->group(function () {
+    // Route::get('Profile', [ProfileController::class, 'index'])->name('profile');
+    // Route::post('Profile', [ProfileController::class, 'UbahFoto'])->name('profile.foto');
+    // Route::post('Profile/ubah-data', [ProfileController::class, 'updateProfile'])->name('profile.ubahdata');
+    // Route::post('Profile/ubah-password', [ProfileController::class, 'GantiPassword'])->name('profile.ubahpass');
+    Route::get('DokterUser', [DokterUserController::class, 'index'])->name('dokteruser');
+    Route::put('DokterUser', [DokterUserController::class, 'UpdateRM'])->name('dokteruser.update');
+});
+Route::middleware(['auth', 'CekLevel:1,2,3'])->group(function () {
+    Route::get('Profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('Profile', [ProfileController::class, 'UbahFoto'])->name('profile.foto');
+    Route::post('Profile/ubah-data', [ProfileController::class, 'updateProfile'])->name('profile.ubahdata');
+    Route::post('Profile/ubah-password', [ProfileController::class, 'GantiPassword'])->name('profile.ubahpass');
 });
 Route::get('Login', [LoginController::class, 'index'])->name('Login');
 Route::get('Logout', [LoginController::class, 'Logout'])->name('Logout');

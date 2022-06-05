@@ -20,7 +20,7 @@
                   <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%">
                                     <thead>
                                             <tr>
-                                                <th >#</th>
+                                                <th >No</th>
                                                 <th>Nama pasien</th>
                                                 <th>No RM</th>
                                                 <th >Jenis Kelamin</th>
@@ -34,13 +34,20 @@
                                         </thead>
                                         <tbody>
                                          @php
-                                             foreach ($rm as $rkm){
-                                               $rekam[]= $rkm->id_pasien;
+                                         if($rm->isEmpty()){
+                                           $rekambos = [];
+                                         }else{
+ foreach ($rm as $rkm){
+                                               $rekambos[]= $rkm->id_pasien;
+
                                              }
+                                         }
+                                            
                                          @endphp
                                             <?php $no = 1; ?>
                                            @foreach ($Pasien as $ps)
                                                 <tr class="odd">
+                                                  
                                                     <td tabindex="0" class="">{{$no++}}</td>
                                                     <td class="sorting_1">{{$ps->nama_pasien}}</td>
                                                     <td>{{$ps->no_rm}}</td>
@@ -49,8 +56,8 @@
                                                     <td>{{$ps->no_telp}}</td>
                                                     <td>{{$ps->alamat}}</td>
                                                     <td>@php
-                                                     
-                                                        if(in_array($ps->id_pasien,$rekam)){
+                                                     if($ps !=null){}
+                                                        if(in_array($ps->id_pasien,$rekambos)){
                                                           echo "Lama";
                                                         }else{
                                                           echo "Baru";
@@ -82,6 +89,8 @@
         </div> <!-- end row -->
     </div>
 </div>
+
+
 <script>
     function UpdatePasien(data){
         let datapas = JSON.parse(data)

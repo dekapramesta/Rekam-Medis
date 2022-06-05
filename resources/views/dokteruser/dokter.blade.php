@@ -11,8 +11,8 @@
                         @endforeach
                         @endif
                 <div class="card-header d-flex">
-                  <h4 class="card-title">Rekam Medis</h4>
-                  <button onclick="TambahRM()" class="btn btn-primary ms-auto">Tambah Data</button>
+                  <h4 class="card-title">Rekam Medis </h4>
+                  {{-- <button onclick="TambahRM()" class="btn btn-primary ms-auto">Tambah Data</button> --}}
                 </div>
                 <!--end card-header-->
                 <div class="card-body">
@@ -22,9 +22,10 @@
                         <th>No</th>
                         <th>Nama Dokter</th>
                         <th>Nama Pasien</th>
-                        <th>Polilinik</th>
                         <th>Keluhan</th>
                         <th>Diagnosa</th>
+                                                <th>Resep Obat</th>
+
                         <th>Tanggal Periksa</th>
                         <th>Aksi</th>
                       </tr>
@@ -39,9 +40,9 @@
                         <td>{{$no++}}</td>
                         <td>{{$rkm->getDokterId->nama_dokter}}</td>
                         <td>{{$rkm->getPasienId->nama_pasien}}</td>
-                        <td>{{$rkm->getPoli->nama_poliklinik}}</td>
                         <td>{{$rkm->diagnosa}}</td>
                         <td>{{$rkm->keluhan}}</td>
+                        <td>{{$rkm->resep_obat}}</td>
                         <td>{{$rkm->tgl_periksa}}</td>
                         <td>
                           <Button onclick="UpdateRM('{{$rkm}}')"id="bElim" type="button" class="btn btn-sm btn-soft-success btn-circle" href=""><i class="dripicons-pencil" aria-hidden="true"></i></Button>
@@ -74,7 +75,6 @@
         $('#update_diagnosa').val(rm.diagnosa)
         $('#update_tindakan').val(rm.tindakan)
         $('#update_obat').val(rm.resep_obat)
-        $('#update_poli').val(rm.id_poli)
 
 
 
@@ -120,15 +120,7 @@
             @endforeach
         </select>
         </div>
-         <div class="form-group" >
-     
-        <select class="select form-control mb-3 " name="id_poli" style="width: 100%; height:36px;">
-          <option disabled selected>Pilih Poliklinik</option>
-            @foreach ($poliklinik as $pk)
-                <option value="{{$pk->id}}">{{$pk->nama_poliklinik  }}</option>
-            @endforeach
-        </select>
-        </div>
+        
          <div class="form-group" >
         <input placeholder="Keluhan" value="{{old('keluhan')}}" type="text" name="keluhan" class="form-control " required="">
         </div>
@@ -158,7 +150,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Detail dan Update</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="{{route('rekammedis.update')}}" method="post">
+      <form action="{{route('dokteruser.update')}}" method="post">
         @csrf
         @method('PUT')
       <div class="modal-body">
@@ -179,14 +171,7 @@
             @endforeach
         </select>
         </div>
-        <div class="form-group">
-            <select class="select form-control mb-3 " id="update_poli" name="id_poli" style="width: 100%; height:36px;">
-          <option disabled selected>Pilih Poliklinik</option>
-            @foreach ($poliklinik as $pk)
-                <option value="{{$pk->id}}">{{$pk->nama_poliklinik  }}</option>
-            @endforeach
-        </select>
-        </div>
+        
          <div class="form-group" >
         <input id="update_keluhan" placeholder="Keluhan" value="{{old('keluhan')}}" type="text" name="keluhan" class="form-control " required="">
         </div>

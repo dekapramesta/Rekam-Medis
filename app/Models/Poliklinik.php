@@ -20,4 +20,14 @@ class Poliklinik extends Model
         # code...
         return $this->hasMany(RekamMedis::class, 'id_poli');
     }
+    public function DokterOne()
+    {
+        # code...
+        return $this->hasOne(Dokter::class, 'id_poli');
+    }
+    public function DokterMany()
+    {
+        # code...
+        return $this->hasMany(Dokter::class, 'id_poli');
+    }
 }

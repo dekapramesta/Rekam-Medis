@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
+use App\Models\Poliklinik;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,9 +13,9 @@ class SuperAdminController extends Controller
     //
     public function index()
     {
-
+        $poli = Poliklinik::all();
         $user = User::all();
-        return view('superadmin.data_user', compact('user'));
+        return view('superadmin.data_user', compact('user', 'poli'));
     }
     public function Daftar(Request $request)
     {
@@ -34,7 +36,20 @@ class SuperAdminController extends Controller
             ]
         );
         $user->save();
-        dd($user->id);
+        if ($request->level == 3) {
+            $request->validate([
+                'nama_dokter' => 'required',
+                'id_poli' => 'required',
+                'alamat' => 'required',
+                'spesialis' => 'required',
+                'no_telp' => 'required',
+            ]);
+            $dokter = new Dokter($request->all());
+            $dokter->id = rand(1000, 9999);
+            $dokter->id_user = $user->id;
+            $dokter->save();
+        }
+        // dd($user->id);
         return redirect()->intended('Superadmin');
     }
     public function UpdateUser(Request $request)

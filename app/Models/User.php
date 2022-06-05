@@ -11,4 +11,9 @@ class User extends Authenticateable
     protected $table = 't_user';
     protected $primarykey = 'id';
     protected $fillable = ['username', 'password', 'level', 'status_user'];
+    public function getUser()
+    {
+        # code...
+        return $this->hasOne(Dokter::class, 'id_user');
+    }
 }

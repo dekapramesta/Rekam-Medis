@@ -20,10 +20,10 @@
 
     </head>
 
-    <body class="account-body accountbg">
+    <body class="account-body accountbg" style="background-image: url('assets/images/rumahsakit.jpeg')">
 
         <!-- Log In page -->
-        <div class="container">
+        <div class="container" >
          
             <div class="row vh-100 d-flex justify-content-center">
                 <div class="col-12 align-self-center">
@@ -38,11 +38,11 @@
                         
                         <div class="col-lg-5 mx-auto">
                             <div class="card">
-                                <div class="card-body p-0 auth-header-box">
+                                <div class="card-body p-0 auth-header-box" style="background:	#FFE4E1">
                                     <div class="d-flex text-center p-3">
                                         <img src="assets/images/telko.jpg" height="80" alt="logo" class="auth-logo">
 
-                                        <h4 class="ms-3 mt-4 mb-1 fw-semibold text-white font-18">Sistem Informasi Rekam Medis</h4>   
+                                        <h4 class="ms-3 mt-4 mb-1 fw-semibold font-18 text-dark">Sistem Informasi Rekam Medis</h4>   
                                         {{-- <p class="text-muted  mb-0">Sign in to continue to Dastone.</p>   --}}
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                     
                                                 <div class="form-group mb-0 row">
                                                     <div class="col-12">
-                                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                        <button class="btn  w-100 waves-effect waves-light" style="background-color:#FFE4E1" type="submit">Log In <i class="fas fa-sign-in-alt ms-1"></i></button>
                                                     </div><!--end col--> 
                                                 </div> <!--end form-group-->                           
                                             </form><!--end form-->

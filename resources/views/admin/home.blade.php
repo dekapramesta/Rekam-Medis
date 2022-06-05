@@ -40,7 +40,8 @@
                         </div>
                         <div class="col-auto align-self-center">
                           <div class="report-main-icon bg-light-alt">
-                            <i data-feather="users" class="align-self-center text-muted icon-sm"></i>
+                              <img src="assets/images/examination.png" class="img-fluid" alt="">
+
                           </div>
                         </div>
                       </div>
@@ -61,7 +62,7 @@
                         </div>
                         <div class="col-auto align-self-center">
                           <div class="report-main-icon bg-light-alt">
-                            <i data-feather="user" class="align-self-center text-muted icon-sm"></i>
+                              <img src="assets/images/doctor.png" class="img-fluid" alt="">
                           </div>
                         </div>
                       </div>
@@ -80,7 +81,8 @@
                         </div>
                         <div class="col-auto align-self-center">
                           <div class="report-main-icon bg-light-alt">
-                            <i data-feather="heart" class="align-self-center text-muted icon-sm"></i>
+                              <img src="assets/images/clinic.png" class="img-fluid" alt="">
+
                           </div>
                         </div>
                       </div>
@@ -102,7 +104,8 @@
                         </div>
                         <div class="col-auto align-self-center">
                           <div class="report-main-icon bg-light-alt">
-                            <i data-feather="file" class="align-self-center text-muted icon-sm"></i>
+                              <img src="assets/images/medical-file.png" class="img-fluid" alt="">
+
                           </div>
                         </div>
                       </div>
