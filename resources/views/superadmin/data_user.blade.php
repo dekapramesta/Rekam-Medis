@@ -57,7 +57,11 @@
                           <Button onclick="UpdateUs('{{$us}}')"id="bElim" type="button" class="btn btn-sm btn-soft-success btn-circle" href=""><i class="dripicons-pencil" aria-hidden="true"></i></Button>
                             <Button onclick="ChangePass('{{$us->id}}')"id="bElim" type="button" class="btn btn-sm btn-soft-primary btn-circle" href=""><i class="dripicons-lock-open" aria-hidden="true"></i></Button>
                             {{-- <Button onclick="GantiStatus('{{$us}}')"id="bElim" type="button" class="btn btn-sm btn-soft-danger btn-circle" href=""><i class="dripicons-trash" aria-hidden="true"></i></Button> --}}
-
+ <form action="{{route('superadmin.deleteuser',$us->id)}}" method="POST"  style="display: inline-flex">
+                                                              @csrf
+                                                              @method('DELETE')
+                                                        <button id="bElim" type="submit" class="btn btn-sm btn-soft-danger btn-circle"><i class="dripicons-trash" aria-hidden="true"></i></button>
+                                                            </form>
                         </td>
                            </tr>
                            @endforeach

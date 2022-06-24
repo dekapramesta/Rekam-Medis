@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokter;
 use App\Models\Poliklinik;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DokterController extends Controller
@@ -36,7 +37,9 @@ class DokterController extends Controller
         # code...
         // echo $id;
         $dokter = Dokter::find($id);
-        $dokter->delete();
+        $data = User::find($dokter->id_user);
+        $data->delete();
+       
         return redirect()->intended('Admin/DataDokter');
     }
 

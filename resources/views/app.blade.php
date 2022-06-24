@@ -66,15 +66,21 @@
             <a href="{{route('DataPasien')}}"><i data-feather="layers" class="align-self-center menu-icon "></i><span>Data Pasien</span></a>
           </li>
           
-           <li class="mb-2">
+           <!-- <li class="mb-2">
             <a href="{{route('DataDokter.index')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Dokter</span></a>
-          </li>
-           <li class="mb-2">
+          </li> -->
+           <!-- <li class="mb-2">
             <a href="{{route('rekammedis')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Rekam Medis</span></a>
-          </li>
+          </li> -->
           
-           <li class="mb-2">
+           <!-- <li class="mb-2">
             <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Poli</span></a>
+          </li> -->
+          <li class="mb-2">
+            <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Poli Umum</span></a>
+          </li>
+          <li class="mb-2">
+            <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Poli Gigi</span></a>
           </li>
            <li class="mb-2">
             <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Laporan</span></a>

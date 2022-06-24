@@ -69,6 +69,7 @@ Route::middleware(['auth', 'CekLevel:2'])->group(function () {
     Route::put('Superadmin', [SuperAdminController::class, 'UpdateUser'])->name('superadmin.update');
     Route::put('Superadmin/GantiPass', [SuperAdminController::class, 'GantiPassword'])->name('superadmin.ganti');
     Route::put('Superadmin/change-status', [SuperAdminController::class, 'ChangeStatus'])->name('superadmin.ubah_status');
+        Route::delete('Superadmin/{id}/Superadmin', [SuperAdminController::class, 'deleteUser'])->name('superadmin.deleteuser');
 
     Route::post('Superadmin', [SuperAdminController::class, 'Daftar'])->name('superadmin.daftar');
 });

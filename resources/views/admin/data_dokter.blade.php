@@ -31,7 +31,7 @@
                                   <thead>
                                             <tr>
                                                 <th >No</th>
-                                                <th>Nama pasien</th>
+                                                <th>Nama Dokter</th>
                                                 <th >PoliKlinik</th>
                                                 <th >Spesialis</th>
                                                 <th >No Telp</th>

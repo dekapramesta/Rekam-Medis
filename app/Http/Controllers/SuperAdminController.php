@@ -88,4 +88,14 @@ class SuperAdminController extends Controller
         $user->save();
         return redirect()->intended('Superadmin');
     }
+     public function deleteUser($id)
+    {
+        # code...
+        // echo $id;
+        // dd($id);
+        $data = User::find($id);
+        $data->delete();
+       
+        return redirect()->intended('Superadmin');
+    }
 }
