@@ -2,14 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Dastone - Admin & Dashboard Template</title>
+    <title>TelkoMedika</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    {{-- <link rel="shortcut icon" href="assets/images/favicon.ico" /> --}}
+            <link rel="shortcut icon" href="assets/images/telko.jpg">
+
 
     <!-- jvectormap -->
     <link href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet" />
@@ -63,7 +65,7 @@
             <a href="{{route('Admin')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
           </li>
             <li class="mb-2">
-            <a href="{{route('DataPasien')}}"><i data-feather="layers" class="align-self-center menu-icon "></i><span>Data Pasien</span></a>
+            <a href="{{route('DataPasien')}}"><i data-feather="layers" class="align-self-center menu-icon "></i><span>Patient Data</span></a>
           </li>
           
            <!-- <li class="mb-2">
@@ -77,23 +79,23 @@
             <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Poli</span></a>
           </li> -->
           <li class="mb-2">
-            <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Poli Umum</span></a>
+            <a href="{{route('polispesifik',[1])}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>General Poly</span></a>
           </li>
           <li class="mb-2">
-            <a href="{{route('poliklinik')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Poli Gigi</span></a>
+            <a href="{{route('polispesifik',[2])}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Dental Poly</span></a>
           </li>
            <li class="mb-2">
-            <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Laporan</span></a>
+            <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Report</span></a>
           </li>
          
               
           @elseif(Auth::user()->level == 2)
                    <li class="mb-2 mt-3">
-            <a href="{{route('superadmin')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data User</span></a>
+            <a href="{{route('superadmin')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>User Data</span></a>
           </li>
             @elseif(Auth::user()->level == 3)
                    <li class="mb-2 mt-3">
-            <a href="{{route('dokteruser')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Data Rekam Medis</span></a>
+            <a href="{{route('dokteruser')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Medical Record Data</span></a>
           </li>
           
           @endif
@@ -103,11 +105,11 @@
     </div>
     <!-- end left-sidenav-->
 
-    <div class="page-wrapper">
+    <div class="page-wrapper" >
       <!-- Top Bar Start -->
       <div class="topbar">
         <!-- Navbar -->
-        <nav class="navbar-custom">
+        <nav class="navbar-custom" style="background-color: #FDEFE0;">
           <ul class="list-unstyled topbar-nav float-end mb-0">
           
 

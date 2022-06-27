@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    <div class="page-content">
+    <div class="page-content" style="background-color: #FDEFE0">
     <div class="container-fluid">
       <div class="row">
             <div class="col-12">
@@ -11,7 +11,7 @@
                         @endforeach
                         @endif
                 <div class="card-header d-flex">
-                  <h4 class="card-title">Rekam Medis </h4>
+                  <h4 class="card-title">Medical Record </h4>
                   {{-- <button onclick="TambahRM()" class="btn btn-primary ms-auto">Tambah Data</button> --}}
                 </div>
                 <!--end card-header-->
@@ -20,14 +20,16 @@
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Nama Dokter</th>
-                        <th>Nama Pasien</th>
-                        <th>Keluhan</th>
-                        <th>Diagnosa</th>
-                                                <th>Resep Obat</th>
+                        <th>Doctor</th>
+                        <th>Patient</th>
+                        <th>Action</th>
+                        <th>Diagnosis</th>
+                         <th>Action</th>
 
-                        <th>Tanggal Periksa</th>
-                        <th>Aksi</th>
+                        <th>Medical Prescription</th>
+
+                        <th>Checkup date</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
 
@@ -40,10 +42,31 @@
                         <td>{{$no++}}</td>
                         <td>{{$rkm->getDokterId->nama_dokter}}</td>
                         <td>{{$rkm->getPasienId->nama_pasien}}</td>
-                        <td>{{$rkm->diagnosa}}</td>
-                        <td>{{$rkm->keluhan}}</td>
-                        <td>{{$rkm->resep_obat}}</td>
-                        <td>{{$rkm->tgl_periksa}}</td>
+                        <td>@if (is_null($rkm->keluhan))
+                            Belum Diperiksa
+                        @else
+                            {{$rkm->keluhan}}
+                        @endif</td>
+                        <td>@if (is_null($rkm->diagnosa))
+                            Belum Diperiksa
+                        @else
+                            {{$rkm->diagnosa}}
+                        @endif</td>
+                         <td>@if (is_null($rkm->tindakan))
+                            Belum Diperiksa
+                        @else
+                            {{$rkm->tindakan}}
+                        @endif</td>
+                        <td>@if (is_null($rkm->resep_obat))
+                            Belum Diperiksa
+                        @else
+                            {{$rkm->resep_obat}}
+                        @endif</td>
+                        <td>@if (is_null($rkm->tgl_periksa))
+                            Belum Diperiksa
+                        @else
+                            {{$rkm->tgl_periksa}}
+                        @endif</td>
                         <td>
                           <Button onclick="UpdateRM('{{$rkm}}')"id="bElim" type="button" class="btn btn-sm btn-soft-success btn-circle" href=""><i class="dripicons-pencil" aria-hidden="true"></i></Button>
                            <form action="{{route('rekammedis.delete',$rkm->id)}}" method="POST"  style="display: inline-flex">
@@ -147,7 +170,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail dan Update</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail and Update</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('dokteruser.update')}}" method="post">
@@ -157,7 +180,7 @@
         <div class="form-group" >
                   <input hidden id="id_rm" placeholder="Keluhan" value="{{old('keluhan')}}" type="text" name="id" class="form-control " required="">
       <select id="update_dokter" class="select form-control mb-3 " name="id_dokter">
-          <option disabled selected>Pilih Dokter</option>
+          <option disabled selected>Doctor</option>
             @foreach ($dokter as $dk)
                 <option value="{{$dk->id}}">{{$dk->nama_dokter}}</option>
             @endforeach
@@ -165,7 +188,7 @@
         </div>
         <div class="form-group">
             <select id="update_pasien" class="select2 form-control mb-3 custom-select" name="id_pasien" style="width: 100%; height:36px;">
-          <option disabled selected>Pilih Pasien</option>
+          <option disabled selected>Patient</option>
             @foreach ($pasien as $ps)
                 <option value="{{$ps->id_pasien}}">{{$ps->no_rm."-".$ps->nama_pasien}}</option>
             @endforeach
@@ -173,16 +196,17 @@
         </div>
         
          <div class="form-group" >
-        <input id="update_keluhan" placeholder="Keluhan" value="{{old('keluhan')}}" type="text" name="keluhan" class="form-control " required="">
+        <input id="update_keluhan" placeholder="Pain Complaint" value="{{old('keluhan')}}" type="text" name="keluhan" class="form-control " required="">
         </div>
          <div class="form-group" >
-        <input id="update_diagnosa" placeholder="Diagnosa" value="{{old('diagnosa')}}" type="text" name="diagnosa" class="form-control " required="">
+        <input id="update_tindakan" placeholder="Action" value="{{old('tindakan')}}" type="text" name="tindakan" class="form-control " required="">
         </div>
          <div class="form-group" >
-        <input id="update_tindakan" placeholder="Tindakan" value="{{old('tindakan')}}" type="text" name="tindakan" class="form-control " required="">
+        <input id="update_diagnosa" placeholder="Diagnosis" value="{{old('diagnosa')}}" type="text" name="diagnosa" class="form-control " required="">
         </div>
+      
          <div class="form-group" >
-        <input id="update_obat" placeholder="Obat" value="{{old('resep_obat')}}" type="text" name="resep_obat" class="form-control " required="">
+        <input id="update_obat" placeholder="Medical Prescription" value="{{old('resep_obat')}}" type="text" name="resep_obat" class="form-control " required="">
         </div>
       </div>
       <div class="modal-footer">

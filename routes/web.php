@@ -38,6 +38,7 @@ Route::middleware(['auth', 'CekLevel:1'])->group(function () {
         // Route::post('Profile/ubah-password', [ProfileController::class, 'GantiPassword'])->name('profile.ubahpass');
         Route::get('DataPasien', [PasienController::class, 'index'])->name('DataPasien');
         Route::post('DataPasien', [PasienController::class, 'SimpanPasien'])->name('DataPasien.simpan');
+        Route::post('pasien-lama', [PasienController::class, 'PasienLama'])->name('pasienlama.simpan');
         Route::put('DataPasien', [PasienController::class, 'UpdatePasien'])->name('DataPasien.update');
         Route::delete('DataPasien/{id}/Delete', [PasienController::class, 'Delete'])->name('DataPasien.delete');
         Route::put('Dokter', [DokterController::class, 'UpdateDokter'])->name('Dokter.updatedokter');
@@ -51,6 +52,10 @@ Route::middleware(['auth', 'CekLevel:1'])->group(function () {
         Route::get('laporan', [DataLaporanController::class, 'index'])->name('laporan');
         Route::get('poliklinik', [PoliklinikController::class, 'index'])->name('poliklinik');
         Route::put('poliklinik', [PoliklinikController::class, 'Update'])->name('poliklinik.update');
+        Route::get('poliklinik/{id}', [PoliklinikController::class, 'poli'])->name('polispesifik');
+        Route::put('poli/rm', [PoliklinikController::class, 'UpdateRM'])->name('polirm.update');
+        Route::put('checked-rm', [PoliklinikController::class, 'CheckedRM'])->name('checked.update');
+
         Route::post('laporan', [DataLaporanController::class, 'LaporanRekamMedis'])->name('laporan.cetak');
         Route::post('poliklinik', [PoliklinikController::class, 'Simpan'])->name('poliklinik.simpan');
         Route::delete('poliklinik/{id}/delete', [PoliklinikController::class, 'Delete'])->name('poliklinik.delete');
@@ -69,7 +74,7 @@ Route::middleware(['auth', 'CekLevel:2'])->group(function () {
     Route::put('Superadmin', [SuperAdminController::class, 'UpdateUser'])->name('superadmin.update');
     Route::put('Superadmin/GantiPass', [SuperAdminController::class, 'GantiPassword'])->name('superadmin.ganti');
     Route::put('Superadmin/change-status', [SuperAdminController::class, 'ChangeStatus'])->name('superadmin.ubah_status');
-        Route::delete('Superadmin/{id}/Superadmin', [SuperAdminController::class, 'deleteUser'])->name('superadmin.deleteuser');
+    Route::delete('Superadmin/{id}/Superadmin', [SuperAdminController::class, 'deleteUser'])->name('superadmin.deleteuser');
 
     Route::post('Superadmin', [SuperAdminController::class, 'Daftar'])->name('superadmin.daftar');
 });

@@ -3,7 +3,7 @@
 @extends('app')
 @section('content')
       
-<div class="page-content">
+<div class="page-content" style="background-color: #FDEFE0">
     <div class="container-fluid">
         <div class="row  justify-content-center">
             <div class="col-8 mt-5">

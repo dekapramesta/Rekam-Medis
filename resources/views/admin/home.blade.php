@@ -1,7 +1,7 @@
 
 @extends('app')
 @section('content')
-      <div class="page-content">
+      <div class="page-content" style="background-color: #FDEFE0">
         <div class="container-fluid">
           <!-- Page-Title -->
           <div class="row">
@@ -9,7 +9,7 @@
               <div class="page-title-box">
                 <div class="row">
                   <div class="col">
-                    <h4 class="page-title">Selamat datang {{Auth::user()->username}} </h4>
+                    <h4 class="page-title">Welcome {{Auth::user()->username}} </h4>
                   </div>
                   <!--end col-->
                   <div class="col-auto align-self-center">
@@ -34,7 +34,7 @@
                     <div class="card-body">
                       <div class="row d-flex justify-content-center">
                         <div class="col">
-                          <p class="text-dark mb-0 fw-semibold">Total Pasien</p>
+                          <p class="text-dark mb-0 fw-semibold">Total Patient</p>
                           <h3 class="m-0">{{$pasien}}</h3>
                          
                         </div>
@@ -56,7 +56,7 @@
                     <div class="card-body">
                       <div class="row d-flex justify-content-center">
                         <div class="col">
-                          <p class="text-dark mb-0 fw-semibold">Total Dokter</p>
+                          <p class="text-dark mb-0 fw-semibold">Total Doctor</p>
                           <h3 class="m-0">{{$dokter}}</h3>
                           
                         </div>
@@ -76,7 +76,7 @@
                     <div class="card-body">
                       <div class="row d-flex justify-content-center">
                         <div class="col">
-                          <p class="text-dark mb-0 fw-semibold">Total Poliklinik</p>
+                          <p class="text-dark mb-0 fw-semibold">Total Poly</p>
                           <h3 class="m-0">{{$poliklinik}}</h3>
                         </div>
                         <div class="col-auto align-self-center">
@@ -99,8 +99,8 @@
                     <div class="card-body">
                       <div class="row d-flex justify-content-center">
                         <div class="col">
-                          <p class="text-dark mb-0 fw-semibold">Total Rekam Medis</p>
-                          <h3 class="m-0">{{$rm}}</h3>
+                          <p class="text-dark mb-0 fw-semibold">Total Medical Record</p>
+                          <h3 class="m-0">{{$rm_count}}</h3>
                         </div>
                         <div class="col-auto align-self-center">
                           <div class="report-main-icon bg-light-alt">

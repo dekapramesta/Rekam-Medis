@@ -16,11 +16,13 @@ class PoliklinikSeeder extends Seeder
     public function run()
     {
         //
-        $user = Poliklinik::create([
-            'nama_poliklinik' => 'Poli anak',
-            'gedung' => 'Lt 3'
-
-        ]);
-        $user->save();
+        $data = [
+            ['nama_poliklinik' => 'Poli Umum', 'gedung' => 'Lt 1'],
+            ['nama_poliklinik' => 'Poli Gigi', 'gedung' => 'Lt 1']
+        ];
+        foreach ($data as $dt) {
+            $user = Poliklinik::create($dt);
+            $user->save();
+        }
     }
 }

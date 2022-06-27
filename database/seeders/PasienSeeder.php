@@ -30,7 +30,8 @@ class PasienSeeder extends Seeder
             'pekerjaan' => 'mahasiswa',
             'pendidikan' => 'sma',
             'status' => 'Menikah',
-            'agama' => 'islam'
+            'agama' => 'islam',
+
 
         ]);
         $user->save();

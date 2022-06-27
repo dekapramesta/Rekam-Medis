@@ -1,17 +1,17 @@
 @extends('app')
 @section('content')
-    <div class="page-content">
+    <div class="page-content" style="background-color: #FDEFE0">
     <div class="container-fluid">
       <div class="row">
             <div class="col-12">
-              <div class="card">
+              <div class="card mt-2">
                  @if ($errors->any())
                         @foreach ($errors->all() as $err)
                             <p class="alert alert-danger">{{$err}}</p>
                         @endforeach
                         @endif
                 <div class="card-header d-flex">
-                  <h4 class="card-title">Data Pegawai</h4>
+                  <h4 class="card-title">Worker Data</h4>
                   <button onclick="TambahUser()" class="btn btn-primary ms-auto">Tambah Data</button>
                 </div>
                 <!--end card-header-->
@@ -19,11 +19,11 @@
                   <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%">
                     <thead>
                       <tr>
-                        <th>No</th>
+                        <th>Num</th>
                         <th>Username</th>
                         <th>Level</th>
                         <th>Status User</th>
-                        <th>Aksi</th>
+                        <th>Menu</th>
                       </tr>
                     </thead>
 
@@ -173,7 +173,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Dan Update</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail And Update</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('superadmin.update')}}" method="post">
@@ -211,7 +211,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="{{route('superadmin.daftar')}}" method="post">
@@ -224,11 +224,11 @@
         <input  placeholder="Password" value="{{old('username')}}" type="password" name="password" class="form-control " required="">
         </div>
         <div class="form-group" >
-        <input  placeholder="Confirmasi Password" value="{{old('username')}}" type="password" name="conf_pass" class="form-control " required="">
+        <input  placeholder="Confirtion Password" value="{{old('username')}}" type="password" name="conf_pass" class="form-control " required="">
         </div>
          <div class="form-group" >
         <select id="level_add" onchange="LevelChange(event)" class="select form-control mb-3 " name="level">
-            <option disabled selected hidden>Pilih Akses</option>
+            <option disabled selected hidden>Choose Access</option>
           <option value="1">Admin</option>
           <option value="2">Super Admin</option>
           <option value="3">Dokter</option>

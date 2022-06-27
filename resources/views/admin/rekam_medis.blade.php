@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    <div class="page-content">
+    <div class="page-content" style="background-color: #FDEFE0">
     <div class="container-fluid">
       <div class="row">
             <div class="col-12">

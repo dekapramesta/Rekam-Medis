@@ -17,7 +17,14 @@ class AdminController extends Controller
         $pasien = Pasien::all()->count();
         $dokter = Dokter::all()->count();
         $poliklinik = Poliklinik::all()->count();
-        $rm = RekamMedis::all()->count();
-        return view('admin/home', compact('pasien', 'dokter', 'poliklinik', 'rm'));
+        $rm = RekamMedis::all();
+        $rm_total = array();
+        foreach ($rm as $rkm) {
+            if (!is_null($rkm->tgl_periksa)) {
+                $rm_total[] = $rkm->tgl_periksa;
+            }
+        }
+        $rm_count = count($rm_total);
+        return view('admin/home', compact('pasien', 'dokter', 'poliklinik', 'rm_count'));
     }
 }

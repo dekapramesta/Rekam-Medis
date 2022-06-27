@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 use App\Models\Pasien;
+use App\Models\Poliklinik;
 use App\Models\RekamMedis;
+use Illuminate\Support\Facades\DB;
 
 class PasienController extends Controller
 {
@@ -13,8 +16,12 @@ class PasienController extends Controller
     {
         $Pasien = Pasien::all();
         $rm = RekamMedis::all();
+        $dokter = Dokter::all();
+        $poliklinik = Poliklinik::all();
+        // dd($Pasien);
+
         // dd($data['rm']);
-        return view('admin/data_pasien', compact('Pasien', 'rm'));
+        return view('admin/data_pasien', compact('Pasien', 'rm', 'dokter', 'poliklinik'));
     }
     public function SimpanPasien(Request $request)
     {
@@ -28,12 +35,14 @@ class PasienController extends Controller
             'pekerjaan' => 'required',
             'pendidikan' => 'required',
             'status' => 'required',
-            'agama' => 'required'
+            'agama' => 'required',
+            'id_poli' => 'required',
+            'id_dokter' => 'required'
         ]);
-        $pasien = new Pasien($request->all());
         $rekam = Pasien::all();
+
         if ($rekam == null) {
-            $id = 'RM000001';
+            $id_rm = 'RM000001';
         } else {
             $id_code = null;
             foreach ($rekam as $rkm) {
@@ -47,11 +56,21 @@ class PasienController extends Controller
                     }
                 }
             }
-            $id = 'RM' . str_pad($id_code + 1, 6, '0', STR_PAD_LEFT);
+            $id_rm = 'RM' . str_pad($id_code + 1, 6, '0', STR_PAD_LEFT);
         }
         // $no_rm = 'RM' . rand(000000, 999999);
-        $pasien->no_rm = $id;
+        $pasien = new Pasien($request->all());
+
+        $pasien->no_rm = $id_rm;
         $pasien->save();
+        $mylastid = DB::getPdo()->lastInsertId();
+        $rm = new RekamMedis;
+
+        $rm->id_pasien = $mylastid;
+        $rm->id_poli = $request->id_poli;
+        $rm->id_dokter = $request->id_dokter;
+        $rm->save();
+
         return redirect()->intended('Admin/DataPasien');
     }
     public function UpdatePasien(Request $request)
@@ -83,5 +102,17 @@ class PasienController extends Controller
         $pasien = Pasien::find($id);
         $pasien->delete();
         return redirect()->intended('Admin/DataPasien');
+    }
+    public function PasienLama(Request $request)
+    {
+        # code...
+        $request->validate([
+            'id_poli' => 'required',
+            'id_pasien' => 'required',
+            'id_dokter' => 'required'
+        ]);
+        $pasien = new RekamMedis($request->all());
+        $pasien->save();
+        return redirect()->back();
     }
 }

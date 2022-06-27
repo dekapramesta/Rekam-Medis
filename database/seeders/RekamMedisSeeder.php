@@ -20,7 +20,7 @@ class RekamMedisSeeder extends Seeder
             'id_dokter' => 1,
             'id_pasien' => 1,
             'id_poli' => 1,
-            'keluhan'             => 'Panas',
+            'keluhan'    => 'Panas',
             'diagnosa'       => 'migrain',
             'tindakan' => 'diperiksa',
             'resep_obat' => 'Paracetamol',

@@ -22,10 +22,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pasien');
             $table->foreign('id_pasien')->references('id_pasien')->on('t_pasien')->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('keluhan', 30);
-            $table->string('diagnosa', 30);
-            $table->string('tindakan', 30);
-            $table->text('resep_obat');
+            $table->string('keluhan', 30)->nullable();
+            $table->string('diagnosa', 30)->nullable();
+            $table->string('tindakan', 30)->nullable();
+            $table->text('resep_obat')->nullable();
 
             $table->foreignId('id_dokter')
                 ->constrained('t_dokter')
@@ -35,7 +35,7 @@ return new class extends Migration
                 ->constrained('t_poliklinik')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->date('tgl_periksa');
+            $table->date('tgl_periksa')->nullable();
             $table->timestamps();
         });
         // Schema::table('t_rekammedis', function (Blueprint $table) {

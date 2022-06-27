@@ -24,4 +24,9 @@ class Pasien extends Model
         # code...
         return $this->hasMany(RekamMedis::class, 'id_pasien');
     }
+    public function getPoli()
+    {
+        # code...
+        return $this->belongsTo(Poliklinik::class, 'id_poli');
+    }
 }

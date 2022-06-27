@@ -30,8 +30,8 @@ class DokterUserController extends Controller
         $rm->id_dokter = $request->id_dokter;
         $rm->id_pasien = $request->id_pasien;
         $rm->keluhan = $request->keluhan;
-        $rm->diagnosa = $request->diagnosa;
         $rm->tindakan = $request->tindakan;
+        $rm->diagnosa = $request->diagnosa;
         $rm->resep_obat = $request->resep_obat;
         $rm->save();
         // dd($rm);
