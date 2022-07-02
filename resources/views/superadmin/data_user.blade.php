@@ -44,6 +44,8 @@
                             {{ "Superadmin" }}
                              @elseif($us->level == 3)
                             {{ "Dokter" }}
+                             @elseif($us->level == 4)
+                            {{ "Kepala rm" }}
 
 
                                
@@ -189,6 +191,8 @@
           <option value="1">Admin</option>
           <option value="2">Super Admin</option>
           <option value="3">Dokter</option>
+          <option value="4">Kepala RM</option>
+
 
         </select>
         </div>
