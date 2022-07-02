@@ -53,6 +53,9 @@ class LoginController extends Controller
                 } elseif (Auth::user()->level == 3) {
                     $request->session()->regenerate();
                     return redirect()->intended('DokterUser');
+                } elseif (Auth::user()->level == 4) {
+                    $request->session()->regenerate();
+                    return redirect()->route('laporan');
                 }
             } else {
                 return redirect()->route('Login')->withErrors(['Akun Non-Aktif']);

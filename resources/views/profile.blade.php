@@ -51,6 +51,9 @@
                                elseif($data->level == 3){
                                    echo "Dokter";
                                }
+                                elseif($data->level == 4){
+                                   echo "Kepala RM";
+                               }
 
                                 @endphp"  class="form-control"  type="text">
                             </div>

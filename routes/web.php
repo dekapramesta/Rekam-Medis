@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataLaporanController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\DokterUserController;
+use App\Http\Controllers\KepalaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
@@ -56,7 +57,6 @@ Route::middleware(['auth', 'CekLevel:1'])->group(function () {
         Route::put('poli/rm', [PoliklinikController::class, 'UpdateRM'])->name('polirm.update');
         Route::put('checked-rm', [PoliklinikController::class, 'CheckedRM'])->name('checked.update');
 
-        Route::post('laporan', [DataLaporanController::class, 'LaporanRekamMedis'])->name('laporan.cetak');
         Route::post('poliklinik', [PoliklinikController::class, 'Simpan'])->name('poliklinik.simpan');
         Route::delete('poliklinik/{id}/delete', [PoliklinikController::class, 'Delete'])->name('poliklinik.delete');
         Route::post('rekam-medis', [RekamMedisController::class, 'Tambah'])->name('rekammedis.tambah');
@@ -86,7 +86,13 @@ Route::middleware(['auth', 'CekLevel:3'])->group(function () {
     Route::get('DokterUser', [DokterUserController::class, 'index'])->name('dokteruser');
     Route::put('DokterUser', [DokterUserController::class, 'UpdateRM'])->name('dokteruser.update');
 });
-Route::middleware(['auth', 'CekLevel:1,2,3'])->group(function () {
+Route::middleware(['auth', 'CekLevel:4'])->group(function () {
+    Route::get('DataKepala', [KepalaController::class, 'index'])->name('kepala');
+});
+Route::middleware(['auth', 'CekLevel:1,2,3,4'])->group(function () {
+    Route::get('laporan', [DataLaporanController::class, 'index'])->name('laporan');
+
+    Route::post('laporan', [DataLaporanController::class, 'LaporanRekamMedis'])->name('laporan.cetak');
     Route::get('Profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('Profile', [ProfileController::class, 'UbahFoto'])->name('profile.foto');
     Route::post('Profile/ubah-data', [ProfileController::class, 'updateProfile'])->name('profile.ubahdata');

@@ -97,6 +97,10 @@
                    <li class="mb-2 mt-3">
             <a href="{{route('dokteruser')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Medical Record Data</span></a>
           </li>
+          @elseif(Auth::user()->level == 4)
+                   <li class="mb-2 mt-3">
+            <a href="{{route('laporan')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Medical Record Data</span></a>
+          </li>
           
           @endif
          
